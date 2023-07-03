@@ -6,11 +6,13 @@ import com.ijv.internjava.utils.MessageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 /**
  * The class BaseController
  * @author <a href="mailto:dongphuocan123@gmail.com">DongPhuocAn</a>
  */
+@Component
 public abstract class BaseController {
     @Autowired
     MessageUtils messageUtils;
