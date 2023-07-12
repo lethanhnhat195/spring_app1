@@ -83,7 +83,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    @Override
     public Employee resetPassword(Long id, Employee employeeDetail) {
         final String passwordDefault = "A123456@";
         Employee employee = employeeRepository.findById(id).orElseThrow(() ->
