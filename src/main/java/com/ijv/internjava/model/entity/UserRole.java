@@ -3,7 +3,7 @@ package com.ijv.internjava.model.entity;
 import com.ijv.internjava.model.dto.BaseEntity;
 import lombok.Data;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Data
 @Entity

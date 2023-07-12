@@ -1,7 +1,7 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 
@@ -29,23 +29,6 @@ public class Services extends BaseEntity {
 
     @Column(name = "DESCRIPTION")
     private String description;
-
-    @Column(name = "CREATED_BY")
-    private String createdBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATED_ON")
-    private Date createdOn;
-
-    @Column(name = "UPDATED_BY")
-    private String updatedBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UPDATED_ON")
-    private Date updatedOn;
-
-    @Column(name = "IS_DELETED")
-    private Boolean isDeleted;
 
     /*JPA Require Constructor*/
     public Services() {

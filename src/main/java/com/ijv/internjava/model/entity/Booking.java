@@ -8,7 +8,7 @@ import lombok.Data;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import jakarta.persistence.*;
+import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "booking")
@@ -41,23 +41,6 @@ public class Booking extends BaseEntity {
 
     @Column(name = "STATUS")
     private Integer status;
-
-    @Column(name = "CREATED_BY")
-    private String createdBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATED_ON")
-    private Date createdOn;
-
-    @Column(name = "UPDATED_BY")
-    private String updatedBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UPDATED_ON")
-    private Date updatedOn;
-
-    @Column(name = "IS_DELETED")
-    private Boolean isDeleted;
 
     /*JPA Require Constructor*/
     public Booking() {

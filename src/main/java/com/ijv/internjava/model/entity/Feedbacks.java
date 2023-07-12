@@ -3,7 +3,7 @@ package com.ijv.internjava.model.entity;
 import com.ijv.internjava.model.dto.BaseEntity;
 import lombok.Data;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -38,23 +38,6 @@ public class Feedbacks extends BaseEntity {
 
     @Column(name = "RATING")
     private Integer rating;
-
-    @Column(name = "CREATED_BY")
-    private String createdBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATED_ON")
-    private Date createdOn;
-
-    @Column(name = "UPDATED_BY")
-    private String updatedBy;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "UPDATED_ON")
-    private Date updatedOn;
-
-    @Column(name = "IS_DELETED")
-    private Boolean isDeleted;
 
     /*JPA Required Constructor*/
     public Feedbacks() {
