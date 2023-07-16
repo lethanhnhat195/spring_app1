@@ -8,18 +8,23 @@ import com.ijv.internjava.repository.IRoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
 import com.ijv.internjava.sercurity.jwt.JwtService;
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
+import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
 import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
 import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
 import com.ijv.internjava.service.IEmployeeService;
 import com.ijv.internjava.utils.CommonConstants;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +47,27 @@ public class AuthenticationService {
     private UserRoleRepository userRoleRepository;
     @Autowired
     private IRoleRepository roleRepository;
+
+    public ApiResponseDto authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
+        var user = EmployeeDetails.build(employeeService.findByUsername(request.getUsername())
+                .orElseThrow());
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        BeanUtils.copyProperties(user, employeeResponse);
+        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
+                .token(jwtService.generateAccessToken(httpServletRequest, user))
+                .employeeResponse(employeeResponse)
+                .build();
+        return ApiResponseDto.builder()
+                .data(authenticationResponse)
+                .status(CommonConstants.ApiStatus.STATUS_OK)
+                .build();
+    }
 
     @Transactional(rollbackFor = SQLException.class)
     public ApiResponseDto register(RegisterRequest request) {
@@ -67,29 +93,6 @@ public class AuthenticationService {
                 .status(CommonConstants.ApiStatus.STATUS_ERROR)
                 .build();
     }
-
-    public ApiResponseDto authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
-        var user = EmployeeDetails.build(employeeService.findByUsername(request.getUsername())
-                .orElseThrow());
-        EmployeeResponse employeeResponse = new EmployeeResponse();
-        BeanUtils.copyProperties(user, employeeResponse);
-        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
-                .token(jwtService.generateToken(user))
-                .employeeResponse(employeeResponse)
-                .build();
-        return ApiResponseDto.builder()
-                .code("abc")
-                .data(authenticationResponse)
-                .status(CommonConstants.ApiStatus.STATUS_OK)
-                .build();
-    }
-
 
     public List<String> validateRegister(RegisterRequest request) {
         List<String> error = new LinkedList<>();
@@ -118,13 +121,23 @@ public class AuthenticationService {
     @Transactional(rollbackFor = UsernameNotFoundException.class)
     public ApiResponseDto changePassword(PasswordUpdateRequest request) {
         Employee employee = employeeService.findByUsername(request.getUsername()).orElseThrow(
-                () -> new UsernameNotFoundException("not found username")
-        );
-        employee.setPassword(passwordEncoder.encode(request.getNewPassword()));
+                () -> new UsernameNotFoundException("not found username"));
+
+        String newPassword = passwordEncoder.encode(request.getNewPassword());
+        employee.setPassword(newPassword);
         employeeService.save(employee);
         return ApiResponseDto.builder()
                 .message("change password success")
                 .status(CommonConstants.ApiStatus.STATUS_OK)
                 .build();
     }
+
+    public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , Employee employee){
+        BeanUtils.copyProperties(request,employee);
+        employeeService.save(employee);
+        return ApiResponseDto.builder()
+                .message("Update success")
+                .build();
+    }
+
 }

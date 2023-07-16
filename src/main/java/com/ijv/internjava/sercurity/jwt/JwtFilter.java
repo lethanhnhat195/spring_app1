@@ -3,7 +3,6 @@ package com.ijv.internjava.sercurity.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.utils.CommonConstants;
-import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,31 +45,27 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         try {
-            username = jwtService.extractUsername(jwt);
-        } catch (JwtException e) {
+            username = jwtService.getUsernameFromToke(jwt);
+        } catch (Exception e) {
             response.setStatus(400);
             response.setContentType("application/json");
             ObjectMapper objectMapper = new ObjectMapper();
             ApiResponseDto apiResponseDto = ApiResponseDto.builder()
-                    .code("123")
                     .message("Token no valid")
-                    .data(null)
                     .status(CommonConstants.ApiStatus.STATUS_ERROR)
                     .build();
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
         }
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailService.loadUserByUsername(username);
-            if (jwtService.isTokenValid(jwt, userDetails)) {
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null,
-                        userDetails.getAuthorities()
-                );
-                authenticationToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            }
+            UserDetails userDetails = userDetailService.loadUserByUsername(username);
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                    userDetails, null,
+                    userDetails.getAuthorities()
+            );
+            authenticationToken.setDetails(
+                    new WebAuthenticationDetailsSource().buildDetails(request)
+            );
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             filterChain.doFilter(request, response);
         }
     }
