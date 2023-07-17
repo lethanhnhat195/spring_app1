@@ -1,15 +1,20 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import lombok.Data;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.*;
 import java.util.Date;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
+@Entity(name = "customer")
 @Table(name = "customer")
 public class Customer extends BaseEntity {
+    @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,9 +34,4 @@ public class Customer extends BaseEntity {
 
     @Column(name = "TOTAL_MONEY")
     private Long totalMoney;
-
-    /*JPA Required Constructor*/
-    public Customer() {
-
-    }
 }

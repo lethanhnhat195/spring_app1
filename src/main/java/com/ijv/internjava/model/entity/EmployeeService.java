@@ -1,14 +1,18 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import javax.persistence.*;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 
 import java.util.Date;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "employee_service")
 public class EmployeeService extends BaseEntity {
     @Id
@@ -27,7 +31,4 @@ public class EmployeeService extends BaseEntity {
     @Column(name = "NOTE")
     private String note;
 
-    /*JPA Required Constructor*/
-    public EmployeeService() {
-    }
 }

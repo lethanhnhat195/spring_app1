@@ -1,12 +1,16 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "user_role")
 public class UserRole extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -16,8 +20,8 @@ public class UserRole extends BaseEntity {
     @ManyToOne(targetEntity=Roles.class,fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ROLE_ID", nullable = false)
     private Roles role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ID;
 
-    /*JPA Require Constructor*/
-    public UserRole() {
-    }
 }

@@ -1,16 +1,20 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import javax.persistence.*;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "services")
 public class Services extends BaseEntity {
     @Id
@@ -29,10 +33,6 @@ public class Services extends BaseEntity {
 
     @Column(name = "DESCRIPTION")
     private String description;
-
-    /*JPA Require Constructor*/
-    public Services() {
-    }
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "service")
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();

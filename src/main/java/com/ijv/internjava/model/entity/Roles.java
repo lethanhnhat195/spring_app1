@@ -1,15 +1,19 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "roles")
 public class Roles extends BaseEntity {
     @Id
@@ -23,9 +27,6 @@ public class Roles extends BaseEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    /*JPA Require Constructor*/
-    public Roles() {
-    }
 
     @ManyToMany
     @JoinTable(name = "user_role",

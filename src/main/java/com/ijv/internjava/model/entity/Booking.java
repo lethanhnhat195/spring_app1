@@ -2,15 +2,20 @@ package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
 
-import lombok.Data;
+import lombok.*;
 
 
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import javax.persistence.*;
-@Data
-@Entity
+import jakarta.persistence.*;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "booking")
 public class Booking extends BaseEntity {
     @Id
@@ -42,9 +47,6 @@ public class Booking extends BaseEntity {
     @Column(name = "STATUS")
     private Integer status;
 
-    /*JPA Require Constructor*/
-    public Booking() {
-    }
 
     @OneToMany(mappedBy = "booking")
     private Set<BookingDetail> bookingDetails = new LinkedHashSet<>();

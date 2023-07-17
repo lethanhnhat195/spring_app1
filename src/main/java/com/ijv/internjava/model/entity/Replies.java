@@ -1,15 +1,20 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "replies")
 public class Replies extends BaseEntity {
+    @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +29,4 @@ public class Replies extends BaseEntity {
     @Column(name = "CONTENT")
     private String content;
 
-    /*JPA Required Constructor*/
-    public Replies() {
-    }
 }

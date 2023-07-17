@@ -1,15 +1,19 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import lombok.Data;
+import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
-@Entity
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 @Table(name = "feedbacks")
 public class Feedbacks extends BaseEntity {
     @Id
@@ -39,9 +43,6 @@ public class Feedbacks extends BaseEntity {
     @Column(name = "RATING")
     private Integer rating;
 
-    /*JPA Required Constructor*/
-    public Feedbacks() {
-    }
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "feedbacks")
     private Set<Replies> replies = new LinkedHashSet<>();
