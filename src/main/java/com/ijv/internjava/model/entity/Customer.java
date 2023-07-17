@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Entity(name = "customer")
-@Table(name = "customer")
+@Table
 public class Customer extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -35,3 +35,4 @@ public class Customer extends BaseEntity {
     @Column(name = "TOTAL_MONEY")
     private Long totalMoney;
 }
+

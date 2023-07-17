@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+@Component
 /**
  * The class BaseController
  * @author <a href="mailto:dongphuocan123@gmail.com">DongPhuocAn</a>

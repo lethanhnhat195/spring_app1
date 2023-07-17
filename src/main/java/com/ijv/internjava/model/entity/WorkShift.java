@@ -1,12 +1,13 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
 
 @Builder
 @Getter

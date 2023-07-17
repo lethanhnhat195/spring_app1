@@ -2,10 +2,8 @@ package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import lombok.*;
-
-
-import java.util.Date;
 
 @Builder
 @Getter
@@ -30,5 +28,5 @@ public class EmployeeService extends BaseEntity {
 
     @Column(name = "NOTE")
     private String note;
-
 }
+
