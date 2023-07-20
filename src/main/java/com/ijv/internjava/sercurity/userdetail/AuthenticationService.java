@@ -6,6 +6,7 @@ import com.ijv.internjava.model.entity.RoleName;
 import com.ijv.internjava.model.entity.UserRole;
 import com.ijv.internjava.repository.IRoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
+import com.ijv.internjava.sercurity.config.CustomAuthenticationFilter;
 import com.ijv.internjava.sercurity.jwt.JwtService;
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
@@ -33,6 +34,7 @@ import org.springframework.validation.BindingResult;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,32 +44,10 @@ public class AuthenticationService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
     @Autowired
     private UserRoleRepository userRoleRepository;
     @Autowired
     private IRoleRepository roleRepository;
-
-    public ApiResponseDto authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
-                        request.getPassword()
-                )
-        );
-        var user = EmployeeDetails.build(employeeService.findByUsername(request.getUsername())
-                .orElseThrow());
-        EmployeeResponse employeeResponse = new EmployeeResponse();
-        BeanUtils.copyProperties(user, employeeResponse);
-        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
-                .token(jwtService.generateAccessToken(httpServletRequest, user))
-                .employeeResponse(employeeResponse)
-                .build();
-        return ApiResponseDto.builder()
-                .data(authenticationResponse)
-                .status(CommonConstants.ApiStatus.STATUS_OK)
-                .build();
-    }
 
     @Transactional(rollbackFor = SQLException.class)
     public ApiResponseDto register(RegisterRequest request) {
@@ -118,12 +98,11 @@ public class AuthenticationService {
                 .build();
     }
 
-    @Transactional(rollbackFor = UsernameNotFoundException.class)
-    public ApiResponseDto changePassword(PasswordUpdateRequest request) {
-        Employee employee = employeeService.findByUsername(request.getUsername()).orElseThrow(
-                () -> new UsernameNotFoundException("not found username"));
-
+    public ApiResponseDto changePassword(PasswordUpdateRequest request , String jwt) {
         String newPassword = passwordEncoder.encode(request.getNewPassword());
+        String username = jwtService.getUsernameFromToke(jwt.substring(7));
+        Employee employee = employeeService.findByUsername(username).orElse(null);
+        assert employee != null;
         employee.setPassword(newPassword);
         employeeService.save(employee);
         return ApiResponseDto.builder()
@@ -132,11 +111,15 @@ public class AuthenticationService {
                 .build();
     }
 
-    public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , Employee employee){
+    public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , String jwt){
+        String username = jwtService.getUsernameFromToke(jwt.substring(7));
+        Employee employee = employeeService.findByUsername(username).orElse(null);
+        assert employee != null;
         BeanUtils.copyProperties(request,employee);
         employeeService.save(employee);
         return ApiResponseDto.builder()
-                .message("Update success")
+                .message("change password success")
+                .status(CommonConstants.ApiStatus.STATUS_OK)
                 .build();
     }
 
