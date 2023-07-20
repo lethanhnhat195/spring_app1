@@ -6,7 +6,6 @@ import org.springframework.validation.Validator;
 
 @Data
 public class PasswordUpdateRequest implements Validator {
-    private String username;
     private String newPassword;
     private String confirmPassword;
 
