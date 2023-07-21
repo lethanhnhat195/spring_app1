@@ -2,8 +2,6 @@ package com.ijv.internjava.controller;
 
 
 import com.ijv.internjava.model.dto.ApiResponseDto;
-import com.ijv.internjava.sercurity.jwt.JwtService;
-import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.userdetail.AuthenticationService;

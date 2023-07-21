@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.List;
 
 import com.ijv.internjava.sercurity.jwt.JwtEntrypoint;
-import com.ijv.internjava.sercurity.jwt.JwtFilter;
 
 @Configuration
 @EnableWebSecurity

@@ -29,6 +29,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ijv.internjava.repository.IRoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
+import com.ijv.internjava.sercurity.config.CustomAuthenticationFilter;
 import com.ijv.internjava.sercurity.jwt.JwtService;
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
@@ -51,6 +52,7 @@ import org.springframework.validation.BindingResult;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -163,50 +165,48 @@ public class AuthenticationService {
     }
 
     public ApiResponseDto changePassword(PasswordUpdateRequest request, String jwt) {
-        String newPassword = passwordEncoder.encode(request.getNewPassword());
-        String username = jwtService.getUsernameFromToke(jwt.substring(7));
-        Employee employee = employeeService.findByUsername(username).orElse(null);
-        assert employee != null;
+                String newPassword = passwordEncoder.encode(request.getNewPassword());
+                employee.setPassword(newPassword);
+                @Transactional(rollbackFor = UsernameNotFoundException.class)
+                public ApiResponseDto changePassword (PasswordUpdateRequest request){
+                    Employee employee = employeeService.findByUsername(request.getUsername()).orElseThrow(
+                    () -> new UsernameNotFoundException("not found username"));
+
+                    String newPassword = passwordEncoder.encode(request.getNewPassword());
+                    employee.setPassword(newPassword);
         @Transactional(rollbackFor = UsernameNotFoundException.class)
         public ApiResponseDto changePassword (PasswordUpdateRequest request){
             Employee employee = employeeService.findByUsername(request.getUsername()).orElseThrow(
-                    () -> new UsernameNotFoundException("not found username"));
+                    () ->new UsernameNotFoundException("not found username")
+        );
+            employee.setPassword(passwordEncoder.encode(request.getNewPassword()));
+            () -> new UsernameNotFoundException("not found username"));
 
             String newPassword = passwordEncoder.encode(request.getNewPassword());
             employee.setPassword(newPassword);
-            @Transactional(rollbackFor = UsernameNotFoundException.class)
-            public ApiResponseDto changePassword (PasswordUpdateRequest request){
-                Employee employee = employeeService.findByUsername(request.getUsername()).orElseThrow(
-                        () -> new UsernameNotFoundException("not found username")
-                );
-                employee.setPassword(passwordEncoder.encode(request.getNewPassword()));
-                () -> new UsernameNotFoundException("not found username"));
-
-                String newPassword = passwordEncoder.encode(request.getNewPassword());
-                employee.setPassword(newPassword);
-                employeeService.save(employee);
-                return ApiResponseDto.builder()
-                        .message("change password success")
-                        .status(CommonConstants.ApiStatus.STATUS_OK)
-                        .build();
-            }
-            public ApiResponseDto updateEmployee (EmployeeUpdateRequest request, String jwt){
-                String username = jwtService.getUsernameFromToke(jwt.substring(7));
-                Employee employee = employeeService.findByUsername(username).orElse(null);
-                assert employee != null;
+            employeeService.save(employee);
+            return ApiResponseDto.builder()
+                    .message("change password success")
+                    .status(CommonConstants.ApiStatus.STATUS_OK)
+                    .build();
+        }
+        public ApiResponseDto updateEmployee (EmployeeUpdateRequest request, String jwt){
+            String username = jwtService.getUsernameFromToke(jwt.substring(7));
+            Employee employee = employeeService.findByUsername(username).orElse(null);
+            assert employee != null;
+            BeanUtils.copyProperties(request, employee);
+            employeeService.save(employee);
+            return ApiResponseDto.builder()
+                    .message("change password success")
+                    .status(CommonConstants.ApiStatus.STATUS_OK)
+            public ApiResponseDto updateEmployee (EmployeeUpdateRequest request, Employee employee){
                 BeanUtils.copyProperties(request, employee);
                 employeeService.save(employee);
                 return ApiResponseDto.builder()
-                        .message("change password success")
-                        .status(CommonConstants.ApiStatus.STATUS_OK)
-                public ApiResponseDto updateEmployee (EmployeeUpdateRequest request, Employee employee){
-                    BeanUtils.copyProperties(request, employee);
-                    employeeService.save(employee);
-                    return ApiResponseDto.builder()
-                            .message("Update success")
-                            .build();
-                }
-            }
+                        .message("Update success")
+                .build();
         }
     }
-}
+>>>>>>>4944
+
+    b68(Fix conflict in branch customer manager)

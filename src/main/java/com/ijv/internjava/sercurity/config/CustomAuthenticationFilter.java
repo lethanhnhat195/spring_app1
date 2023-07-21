@@ -21,6 +21,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ijv.internjava.service.IEmployeeService;
@@ -30,7 +31,6 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -145,38 +145,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 throw new RuntimeException(e);
             }
         }
-
-        @Override
-        protected void unsuccessfulAuthentication (HttpServletRequest request, HttpServletResponse
-        response, AuthenticationException failed) throws IOException, ServletException {
-            implementBean(request);
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            ApiResponseDto apiResponseDto = ApiResponseDto.builder().code(CommonConstants.MessageError.ER017)
-                    .data(null)
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            ApiResponseDto apiResponseDto = ApiResponseDto.builder().code(CommonConstants.MessageError.ER017)
-                    .message(messageUtils.getMessage(CommonConstants.MessageError.ERROR_AUTHENTICATE, null)).data(null)
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            ApiResponseDto apiResponseDto = ApiResponseDto.builder().code(CommonConstants.MessageError.ER017)
-                    .message(messageUtils.getMessage(CommonConstants.MessageError.ERROR_AUTHENTICATE, null)).data(null)
-                    .status(CommonConstants.ApiStatus.STATUS_ERROR).build();
-            try {
-                response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
-                response.setContentType("application/json");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        private void implementBean (HttpServletRequest request){
-            if (objectMapper == null || jwtService == null || messageUtils == null) {
-                ServletContext servletContext = request.getServletContext();
-                WebApplicationContext webApplicationContext = WebApplicationContextUtils
-                        .getWebApplicationContext(servletContext);
-                assert webApplicationContext != null;
-                objectMapper = webApplicationContext.getBean(ObjectMapper.class);
-                jwtService = webApplicationContext.getBean(JwtService.class);
-                messageUtils = webApplicationContext.getBean(MessageUtils.class);
-            }
-        }
     }
 }
+
