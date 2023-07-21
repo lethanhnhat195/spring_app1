@@ -36,7 +36,7 @@ public class WorkShift extends BaseEntity {
 
     @OneToMany(mappedBy = "workShift")
     private Set<Employee> employees = new LinkedHashSet<>();
-
+  
     public WorkShift(Long id) {
         this.id = id;
     }

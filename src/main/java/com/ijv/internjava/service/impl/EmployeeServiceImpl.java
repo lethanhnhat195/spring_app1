@@ -1,7 +1,5 @@
 package com.ijv.internjava.service.impl;
 
-
-
 import com.ijv.internjava.exception.ResourceNotFoundException;
 import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.WorkShift;
@@ -106,5 +104,29 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
     }
+  
+    @Override
+    public Optional<Employee> findByUsername(String username) {
+        return IEmployeeRepository.findByUsername(username);
+    }
 
+    @Override
+    public boolean existsByEmail(String email) {
+        return IEmployeeRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return IEmployeeRepository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean existsByPhone(String phone) {
+        return IEmployeeRepository.existsByPhone(phone);
+    }
+
+    @Override
+    public void save(Employee employee) {
+        IEmployeeRepository.save(employee);
+    }
 }
