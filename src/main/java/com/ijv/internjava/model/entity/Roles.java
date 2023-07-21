@@ -15,10 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "roles")
-<<<<<<< HEAD
-=======
 @Entity
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 public class Roles extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -31,10 +28,7 @@ public class Roles extends BaseEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
     @ManyToMany
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "role_id"),
