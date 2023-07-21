@@ -7,14 +7,28 @@ import com.ijv.internjava.model.entity.UserRole;
 import com.ijv.internjava.repository.RoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
 import com.ijv.internjava.sercurity.jwt.JwtService;
+<<<<<<< HEAD
+=======
+import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
+>>>>>>> e975b92 (fix conflict)
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
 import com.ijv.internjava.service.EmployeeService;
 import com.ijv.internjava.utils.CommonConstants;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
+=======
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+>>>>>>> e975b92 (fix conflict)
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -120,7 +134,11 @@ public class AuthenticationService {
                 () -> new UsernameNotFoundException("not found username"));
 
         String newPassword = passwordEncoder.encode(request.getNewPassword());
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
         employee.setPassword(newPassword);
         employeeService.save(employee);
         return ApiResponseDto.builder()
@@ -145,7 +163,11 @@ public class AuthenticationService {
         employeeService.save(employee);
         return ApiResponseDto.builder()
                 .message("Update success")
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
                 .build();
     }
 

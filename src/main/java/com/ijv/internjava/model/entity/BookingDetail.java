@@ -6,17 +6,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-
-@Entity
-@Table(name = "booking_detail", indexes = {
-        @Index(name = "booking_id", columnList = "booking_id"),
-        @Index(name = "service_id", columnList = "service_id")
-})
 @Getter
 @Setter
+@Entity
+@Table(name = "booking_detail")
 public class BookingDetail extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -30,5 +26,4 @@ public class BookingDetail extends BaseEntity {
 
     @Column(name = "note", length = 500)
     private String note;
-
 }

@@ -31,7 +31,6 @@ public class WorkShift extends BaseEntity {
 
     @Column(name = "description", length = 500)
     private String description;
-
     @OneToMany(mappedBy = "workShift")
     private Set<Employee> employees = new LinkedHashSet<>();
 
@@ -40,6 +39,5 @@ public class WorkShift extends BaseEntity {
     }
 
     public WorkShift() {
-
     }
 }

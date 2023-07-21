@@ -30,7 +30,11 @@ public class CommonConstants {
 
     public static class MessageSuccess {
         public static final String SC007 ="";
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
     }
 
     public static class Params {

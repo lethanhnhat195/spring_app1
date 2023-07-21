@@ -12,15 +12,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRole {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private Employee user;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
@@ -29,7 +26,6 @@ public class UserRole {
         this.user = user;
         this.role = role;
     }
-
     public UserRole() {
     }
 }

@@ -95,8 +95,8 @@ public class EmployeeServiceImpl implements EmployeeService {
        Optional<Employee> optionalEmployee = EmployeeRepository.findById(id);
 >>>>>>> 56d4993 (fix conflict from main branch)
 
-       if (optionalEmployee.isPresent()){
-           Employee employee = optionalEmployee.get();
+        if (optionalEmployee.isPresent()){
+            Employee employee = optionalEmployee.get();
 
            employee.setName(employeeDetail.getName());
            employee.setGender(employeeDetail.getGender());

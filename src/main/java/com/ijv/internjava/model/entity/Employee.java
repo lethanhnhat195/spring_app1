@@ -75,7 +75,6 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),

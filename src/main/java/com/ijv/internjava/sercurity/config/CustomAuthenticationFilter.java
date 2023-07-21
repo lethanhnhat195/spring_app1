@@ -6,12 +6,17 @@ import com.ijv.internjava.model.dto.ApiResponseDto;
 <<<<<<< HEAD
 =======
 import com.ijv.internjava.model.entity.Employee;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import com.ijv.internjava.sercurity.jwt.JwtService;
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
 import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
 import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
+<<<<<<< HEAD
 import com.ijv.internjava.utils.CommonConstants;
 import com.ijv.internjava.utils.MessageUtils;
 import jakarta.servlet.FilterChain;
@@ -23,6 +28,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 =======
+<<<<<<< HEAD
+=======
+import com.ijv.internjava.service.IEmployeeService;
+import com.ijv.internjava.utils.CommonConstants;
+import com.ijv.internjava.utils.MessageUtils;
+import jakarta.servlet.FilterChain;
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +42,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -41,7 +57,11 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 =======
 import org.springframework.stereotype.Component;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -50,7 +70,11 @@ import java.util.stream.Collectors;
 =======
 @PropertySource("classpath:application.properties")
 @RequiredArgsConstructor
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     AuthenticationManager authenticationManager;
@@ -74,7 +98,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
         String requestData = "";
         try {
             requestData = request.getReader().lines().collect(Collectors.joining());
@@ -89,7 +117,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         String username = null;
         String password = null;
         AuthenticationRequest authenticationRequest = null;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
         try {
             authenticationRequest = new Gson().fromJson(requestData, AuthenticationRequest.class);
             username = authenticationRequest.getUsername();
@@ -105,7 +137,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         String currentUsername = username;
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(authToken);
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
     }
 
     @Override
@@ -122,7 +158,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Employee employee = employeeService.findByUsername(jwtService.getUsernameFromToke(token)).get();
         BeanUtils.copyProperties(employee, employeeResponse);
         AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
                 .token(token)
                 .employeeResponse(employeeResponse)
                 .typeOfToken("Bearer")
@@ -132,7 +172,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .message(null).data(authenticationResponse)
 =======
                 .message(messageUtils.getMessage(CommonConstants.MessageSuccess.SC007, null)).data(authenticationResponse)
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
                 .status(CommonConstants.ApiStatus.STATUS_OK).build();
         try {
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
@@ -153,7 +197,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         ApiResponseDto apiResponseDto = ApiResponseDto.builder().code(CommonConstants.MessageError.ER017)
                 .message(messageUtils.getMessage(CommonConstants.MessageError.ERROR_AUTHENTICATE, null)).data(null)
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
                 .status(CommonConstants.ApiStatus.STATUS_ERROR).build();
         try {
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
@@ -175,5 +223,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         }
     }
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 }

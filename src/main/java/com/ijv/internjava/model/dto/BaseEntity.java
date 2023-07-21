@@ -35,7 +35,6 @@ public abstract class BaseEntity implements Serializable {
     protected void onCreate() {
         createdOn = new Date();
     }
-
     @PreUpdate
     protected void onUpdate() {
         updatedOn = new Date();

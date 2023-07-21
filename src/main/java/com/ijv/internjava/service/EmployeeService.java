@@ -23,7 +23,6 @@ public interface EmployeeService {
     Employee resetPassword(Long id, Employee employeeDetail);
 
     void saveEmployeesToDatabase(MultipartFile file);
-
     Optional<Employee> findByUsername(String username);
 
     boolean existsByEmail(String email);

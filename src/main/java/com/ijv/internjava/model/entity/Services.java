@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "services")
+<<<<<<< HEAD
 
 @Entity
 public class Services extends BaseEntity {

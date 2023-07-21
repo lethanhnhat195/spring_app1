@@ -14,7 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 =======
 import org.springframework.http.HttpStatus;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -29,7 +33,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 <<<<<<< HEAD
 =======
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -38,7 +46,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 <<<<<<< HEAD
 =======
 import java.io.IOException;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import java.util.Collections;
 import java.util.List;
 
@@ -53,7 +65,11 @@ public class SecurityConfiguration {
     private final String[] PUBLIC_URL = {"/login","/api/auth/**"};
 =======
     private final JwtEntrypoint jwtEntrypoint;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -75,7 +91,11 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntrypoint))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
                 .logout().logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpStatus.OK.value()))
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true).
@@ -86,7 +106,11 @@ public class SecurityConfiguration {
 <<<<<<< HEAD
 
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -112,6 +136,10 @@ public class SecurityConfiguration {
         }
   }
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 
 }

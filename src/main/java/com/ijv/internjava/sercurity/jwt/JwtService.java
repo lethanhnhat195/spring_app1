@@ -11,7 +11,11 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
 import io.jsonwebtoken.security.Keys;
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;

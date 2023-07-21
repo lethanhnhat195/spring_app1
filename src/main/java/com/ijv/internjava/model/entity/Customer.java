@@ -31,7 +31,6 @@ public class Customer extends BaseEntity {
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
-
     @Column(name = "total_money", precision = 10)
     private BigDecimal totalMoney;
 }
