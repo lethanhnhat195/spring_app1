@@ -1,5 +1,8 @@
 package com.ijv.internjava.model.entity;
 
+
+import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,16 +14,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRole {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "USER_ID", nullable = false)
     private Employee user;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "ROLE_ID", nullable = false)
     private Role role;
+
 }
+

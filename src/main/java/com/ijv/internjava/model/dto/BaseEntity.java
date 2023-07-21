@@ -1,4 +1,8 @@
 package com.ijv.internjava.model.dto;
+import lombok.Getter;
+import lombok.Setter;
+
+import jakarta.persistence.*;
 
 import lombok.Data;
 
@@ -6,7 +10,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
+
 public abstract class BaseEntity implements Serializable {
     @Id
     @Column(name = "ID")
@@ -27,14 +33,15 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "UPDATED_ON")
     private Date updatedOn;
 
+
     @Column(name = "IS_DELETED")
     private Boolean isDeleted;
+
 
     @PrePersist
     protected void onCreate() {
         createdOn = new Date();
     }
-
     @PreUpdate
     protected void onUpdate() {
         updatedOn = new Date();

@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
  * @author <a href="mailto:dongphuocan123@gmail.com">DongPhuocAn</a>
  */
 
+@Component
+
 public abstract class BaseController {
     @Autowired
     MessageUtils messageUtils;

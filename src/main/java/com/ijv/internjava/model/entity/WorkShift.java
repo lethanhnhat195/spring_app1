@@ -3,11 +3,9 @@ package com.ijv.internjava.model.entity;
 import com.ijv.internjava.model.dto.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 @Entity
 @Table(name = "WORK_SHIFT")
 @Getter
@@ -36,3 +34,4 @@ public class WorkShift extends BaseEntity {
     @OneToMany(mappedBy = "workshift")
     private Set<Employee> employees = new LinkedHashSet<>();
 }
+

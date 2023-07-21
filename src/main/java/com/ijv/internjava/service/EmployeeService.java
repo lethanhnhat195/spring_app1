@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface EmployeeService {
@@ -22,7 +23,18 @@ public interface EmployeeService {
     Employee resetPassword(Long id, Employee employeeDetail);
 
     void saveEmployeesToDatabase(MultipartFile file);
+    Optional<Employee> findByUsername(String username);
 
+    boolean existsByEmail(String email);
 
+    Optional<Employee> findByUsername(String username);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByPhone(String phone);
+
+    void save(Employee employee);
 
 }

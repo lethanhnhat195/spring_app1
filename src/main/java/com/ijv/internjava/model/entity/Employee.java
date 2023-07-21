@@ -3,6 +3,7 @@ package com.ijv.internjava.model.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -11,8 +12,10 @@ import java.util.Set;
 @Table(name = "EMPLOYEES", indexes = {
         @Index(name = "WORK_SHIFT_ID", columnList = "WORK_SHIFT_ID")
 })
+
 @Getter
 @Setter
+
 public class Employee {
     @Id
     @Column(name = "ID", nullable = false)
@@ -40,7 +43,9 @@ public class Employee {
     @Column(name = "IMAGE", length = 200)
     private String image;
 
+
     @Column(name = "USER_NAME", nullable = false, length = 50)
+
     private String username;
 
     @Column(name = "PASSWORD", nullable = false, length = 100)
@@ -53,10 +58,12 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();
 
+
     @ManyToMany
     @JoinTable(name = "USER_ROLE",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+
     private Set<Role> roles = new LinkedHashSet<>();
 
 }

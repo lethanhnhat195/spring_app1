@@ -25,17 +25,21 @@ import java.util.Map;
 public class EmployeeController {
 
     @Autowired
+    private EmployeeService EmployeeService;
     private EmployeeService employeeService;
 
     //get all employees
     @GetMapping("/list")
     public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = EmployeeService.getAllEmployee();
         List<Employee> employees = employeeService.getAllEmployee();
+        List<Employee> employees = EmployeeService.getAllEmployee();
         return ResponseEntity.ok(employees);
     }
     //search employee
     @GetMapping("/search")
     public ResponseEntity<List<Employee>> searchEmployees(@RequestParam("query") String query) {
+        return ResponseEntity.ok(EmployeeService.searchEmployees(query));
         return ResponseEntity.ok(employeeService.searchEmployees(query));
     }
 
@@ -54,21 +58,20 @@ public class EmployeeController {
     // get employee
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeService.getEmployeeById(id);
+        Employee employee = EmployeeService.getEmployeeById(id);
         return ResponseEntity.ok(employee);
     }
     //update employee rest api
     @PutMapping("update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,@RequestBody Employee employeeDetails) {
 
-        Employee updateEmployee = employeeService.updateEmployee(id, employeeDetails);
+        Employee updateEmployee = EmployeeService.updateEmployee(id, employeeDetails);
         return ResponseEntity.ok(updateEmployee);
     }
 
     // delete employee rest api
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
-
         employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
@@ -76,14 +79,14 @@ public class EmployeeController {
     // reset password to default
     @PutMapping("/reset_password/{id}")
     public  ResponseEntity<Employee> resetPassword(@PathVariable Long id, @RequestBody Employee employeeDetails) {
-        Employee resetEmployee = employeeService.resetPassword(id,employeeDetails);
+        Employee resetEmployee = EmployeeService.resetPassword(id,employeeDetails);
         return ResponseEntity.ok(resetEmployee);
     }
 
     //get template import file excel
     @PostMapping("/upload-file-data")
     public ResponseEntity<?> uploadEmployeesData(@RequestParam("file")MultipartFile file) {
-        employeeService.saveEmployeesToDatabase(file);
+        EmployeeService.saveEmployeesToDatabase(file);
         return ResponseEntity.ok(Map.of("Message","Employees data uploaded and saved to database successfully"));
     }
 
