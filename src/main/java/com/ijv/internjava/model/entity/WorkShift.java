@@ -10,6 +10,14 @@ import java.util.Set;
 @Table(name = "WORK_SHIFT")
 @Getter
 @Setter
+<<<<<<< HEAD
+=======
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
+@Table(name = "work_shift")
+@Entity
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 public class WorkShift extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)

@@ -4,6 +4,7 @@ import com.ijv.internjava.model.dto.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
@@ -12,16 +13,15 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "CUSTOMER")
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-@Entity(name = "customer")
-@Table
+@Entity
+@Table(name = "customer")
 public class Customer extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -46,4 +46,5 @@ public class Customer extends BaseEntity {
 
     @OneToMany(mappedBy = "customer")
     private Set<Booking> bookings = new LinkedHashSet<>();
+
 }

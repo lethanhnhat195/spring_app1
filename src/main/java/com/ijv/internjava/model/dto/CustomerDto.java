@@ -8,11 +8,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @Data
 =======
 @Getter
 @Setter
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+@Getter
+@Setter
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDto implements Serializable {

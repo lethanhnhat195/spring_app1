@@ -11,6 +11,14 @@ import lombok.Setter;
 })
 @Getter
 @Setter
+<<<<<<< HEAD
+=======
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
+@Table(name = "employee_service")
+@Entity
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 public class EmployeeService extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)

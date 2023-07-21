@@ -19,6 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "booking")
+@Entity
 public class Booking extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -57,3 +58,4 @@ public class Booking extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "booking")
     private Set<BookingDetail> bookingDetail = new LinkedHashSet<>();
 }
+

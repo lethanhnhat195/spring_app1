@@ -16,13 +16,16 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "services")
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 @Entity
 public class Services extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "NAME", nullable = false)
     private String name;
