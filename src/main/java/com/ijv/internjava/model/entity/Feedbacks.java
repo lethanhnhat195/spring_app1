@@ -5,9 +5,13 @@ import lombok.*;
 
 import jakarta.persistence.*;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Date;
 =======
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+
+>>>>>>> cc23f7d (fix conflict)
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -19,9 +23,14 @@ import java.util.Set;
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "feedbacks")
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 @Entity
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+
+@Entity
+>>>>>>> cc23f7d (fix conflict)
 public class Feedbacks extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -51,9 +60,12 @@ public class Feedbacks extends BaseEntity {
     private Integer rating;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+>>>>>>> cc23f7d (fix conflict)
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "feedbacks")
     private Set<Replies> replies = new LinkedHashSet<>();
 }
