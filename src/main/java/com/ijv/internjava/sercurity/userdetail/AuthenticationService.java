@@ -4,28 +4,17 @@ import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.RoleName;
 import com.ijv.internjava.model.entity.UserRole;
-import com.ijv.internjava.repository.IRoleRepository;
+import com.ijv.internjava.repository.RoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
-import com.ijv.internjava.sercurity.config.CustomAuthenticationFilter;
 import com.ijv.internjava.sercurity.jwt.JwtService;
-import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
-import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
-import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
-import com.ijv.internjava.service.IEmployeeService;
+import com.ijv.internjava.service.EmployeeService;
 import com.ijv.internjava.utils.CommonConstants;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,20 +23,19 @@ import org.springframework.validation.BindingResult;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
     @Autowired
-    private IEmployeeService employeeService;
+    private EmployeeService employeeService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     @Autowired
     private UserRoleRepository userRoleRepository;
     @Autowired
-    private IRoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
     @Transactional(rollbackFor = SQLException.class)
     public ApiResponseDto register(RegisterRequest request) {
