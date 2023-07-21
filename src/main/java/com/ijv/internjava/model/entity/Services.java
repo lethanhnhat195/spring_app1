@@ -16,11 +16,19 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "services")
+<<<<<<< HEAD
+=======
+@Entity
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 public class Services extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     private Long id;
+=======
+    private Integer id;
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 
     @Column(name = "NAME", nullable = false)
     private String name;

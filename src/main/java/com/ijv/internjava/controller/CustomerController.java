@@ -4,6 +4,7 @@ package com.ijv.internjava.controller;
 import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.model.dto.CustomerDto;
 import com.ijv.internjava.service.CustomerService;
+<<<<<<< HEAD
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -69,4 +76,9 @@ public class CustomerController {
     public void delete(@PathVariable(name = "id") long customerId) {
         customerService.delete(customerId);
     }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 }

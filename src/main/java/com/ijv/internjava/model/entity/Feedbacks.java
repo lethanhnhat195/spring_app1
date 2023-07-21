@@ -4,7 +4,10 @@ import com.ijv.internjava.model.dto.BaseEntity;
 import lombok.*;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import java.util.Date;
+=======
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -15,6 +18,10 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "feedbacks")
+<<<<<<< HEAD
+=======
+@Entity
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 public class Feedbacks extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -43,7 +50,10 @@ public class Feedbacks extends BaseEntity {
     @Column(name = "RATING")
     private Integer rating;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "feedbacks")
     private Set<Replies> replies = new LinkedHashSet<>();
 }

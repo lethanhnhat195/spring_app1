@@ -15,6 +15,10 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "employees")
+<<<<<<< HEAD
+=======
+@Entity
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 public class Employees extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
@@ -52,7 +56,10 @@ public class Employees extends BaseEntity {
     @Column(name = "WORK_SHIFT_ID", nullable = false)
     private Integer workShiftId;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
     @ManyToMany
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),

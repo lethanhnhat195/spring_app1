@@ -7,7 +7,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Date;
 
+<<<<<<< HEAD
 @Data
+=======
+@Getter
+@Setter
+>>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDto implements Serializable {
