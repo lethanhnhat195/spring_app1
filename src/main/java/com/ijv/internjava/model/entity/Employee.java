@@ -43,7 +43,7 @@ public class Employee {
 
     @Column(name = "image", length = 200)
     private String image;
-    
+
 
     @Column(name = "user_name", nullable = false, length = 50)
     private String username;

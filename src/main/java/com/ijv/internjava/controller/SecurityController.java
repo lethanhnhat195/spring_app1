@@ -1,6 +1,12 @@
 package com.ijv.internjava.controller;
 
+<<<<<<< HEAD
 
+=======
+import com.ijv.internjava.model.dto.ApiResponseDto;
+import com.ijv.internjava.sercurity.jwt.JwtService;
+import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
+>>>>>>> 81396b0 (create repository, service and controller for login and sign-up)
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.userdetail.AuthenticationService;
