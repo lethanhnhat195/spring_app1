@@ -12,7 +12,6 @@ import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
 import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
 import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
-import com.ijv.internjava.service.IEmployeeService;
 import com.ijv.internjava.utils.CommonConstants;
 import com.ijv.internjava.utils.MessageUtils;
 import jakarta.servlet.FilterChain;

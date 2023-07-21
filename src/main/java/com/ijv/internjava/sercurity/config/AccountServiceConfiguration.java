@@ -1,8 +1,7 @@
 package com.ijv.internjava.sercurity.config;
 
-import com.ijv.internjava.repository.IEmployeeRepository;
 import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
-import com.ijv.internjava.service.IEmployeeService;
+import com.ijv.internjava.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AccountServiceConfiguration {
 
     @Autowired
-    private IEmployeeService employeeService;
+    private EmployeeService employeeService;
 
     @Bean
     public UserDetailsService loadUserByUsername() {
