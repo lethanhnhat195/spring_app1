@@ -30,20 +30,6 @@ public class RegisterRequest {
     private String phone;
     private String address;
     @NotBlank(message = "not blank")
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
-=======
-
->>>>>>> 81be34c (Fix conflict on branch customer manager)
-=======
-
-=======
->>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
->>>>>>> 6c35d5d (Fix conflict in branch customer manager)
     private String email;
     private String image;
     private Set<String> roles;

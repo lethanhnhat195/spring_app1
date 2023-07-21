@@ -4,6 +4,7 @@ import com.ijv.internjava.model.dto.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
 import org.hibernate.annotations.NaturalId;
 

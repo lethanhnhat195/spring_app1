@@ -19,10 +19,13 @@ public class CommonConstants {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> 8cdfa93 (Fix conflict in branch customer manager)
         public static final String ERROR_AUTHENTICATE = "c";
         public static final String ER017 ="a";
     }
@@ -50,6 +53,7 @@ public class CommonConstants {
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
@@ -57,6 +61,16 @@ public class CommonConstants {
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
 =======
 >>>>>>> b3c47dc (update dependency maven)
+=======
+=======
+        public static final String ERROR_AUTHENTICATE = "";
+        public static final String ER017 ="";
+    }
+
+    public static class MessageSuccess {
+        public static final String SC007 ="";
+>>>>>>> a3e137a (create update employee and change password)
+>>>>>>> 8cdfa93 (Fix conflict in branch customer manager)
     }
 
     public static class Params {
