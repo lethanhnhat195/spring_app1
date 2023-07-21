@@ -91,7 +91,7 @@ public class AuthenticationService {
         return error;
     }
 
-    public ApiResponseDto isError(RegisterRequest request, BindingResult bindingResult) {
+    public ApiResponseDto sendError(BindingResult bindingResult) {
         return ApiResponseDto.builder()
                 .status(CommonConstants.ApiStatus.STATUS_ERROR)
                 .data(bindingResult.getAllErrors())
