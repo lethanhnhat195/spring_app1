@@ -56,6 +56,7 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 <<<<<<< HEAD
@@ -65,6 +66,11 @@ public class JwtFilter extends OncePerRequestFilter {
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+=======
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+>>>>>>> a3e137a (create update employee and change password)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
             UserDetails userDetails = userDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null,

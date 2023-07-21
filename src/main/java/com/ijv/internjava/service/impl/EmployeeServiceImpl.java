@@ -6,8 +6,11 @@ package com.ijv.internjava.service.impl;
 =======
 
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 import com.ijv.internjava.exception.ResourceNotFoundException;
 import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.WorkShift;
@@ -51,6 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 <<<<<<< HEAD
         if (employeeByEmail.isPresent()) {
 =======
+<<<<<<< HEAD
 =======
         Optional<Employee> employeeByEmail = EmployeeRepository.findEmployeeByEmail(employee.getEmail());
 >>>>>>> 56d4993 (fix conflict from main branch)
@@ -60,6 +64,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         Optional<Employee> employeeByEmail = EmployeeRepository.findEmployeeByEmail(employee.getEmail());
         if(employeeByEmail.isPresent()) {
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+        if(employeeByEmail.isPresent()) {
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
             throw new IllegalStateException("email taken");
         }
         return EmployeeRepository.save(employee);
@@ -77,6 +85,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
 
         if (optionalEmployee.isPresent()) {
@@ -100,6 +111,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 =======
        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+<<<<<<< HEAD
 =======
        Optional<Employee> optionalEmployee = EmployeeRepository.findById(id);
 >>>>>>> 56d4993 (fix conflict from main branch)
@@ -112,6 +124,11 @@ public class EmployeeServiceImpl implements EmployeeService {
        if (optionalEmployee.isPresent()){
            Employee employee = optionalEmployee.get();
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+
+       if (optionalEmployee.isPresent()){
+           Employee employee = optionalEmployee.get();
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 
            employee.setName(employeeDetail.getName());
            employee.setGender(employeeDetail.getGender());
@@ -119,21 +136,33 @@ public class EmployeeServiceImpl implements EmployeeService {
            employee.setAddress(employeeDetail.getAddress());
            employee.setPhone(employeeDetail.getPhone());
            employee.setEmail(employeeDetail.getEmail());
+<<<<<<< HEAD
            employee.setUsername(employeeDetail.getUsername());
+=======
+           employee.setUserName(employeeDetail.getUserName());
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
            employee.setPassword(employeeDetail.getPassword());
            employee.setImage(employeeDetail.getImage());
            employee.setWorkShift(new WorkShift(employeeDetail.getId()));
 
+<<<<<<< HEAD
            Employee updateEmployee = EmployeeRepository.save(employee);
+=======
+           Employee updateEmployee = employeeRepository.save(employee);
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
            return updateEmployee;
        }else {
            throw new ResourceNotFoundException("Employee not exist with id : " + id);
        }
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 
     @Override
     public void deleteEmployee(Long id) {
@@ -144,12 +173,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     @Override
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 =======
     @Override
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+=======
+    @Override
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
     public Employee resetPassword(Long id, Employee employeeDetail) {
         final String passwordDefault = "A123456@";
         Employee employee = EmployeeRepository.findById(id).orElseThrow(() ->
@@ -163,12 +198,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void saveEmployeesToDatabase(MultipartFile file) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
         if (ExcelUploadService.isValueExcelFile(file)) {
             try {
                 List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
                 this.employeeRepository.saveAll(employees);
             } catch (IOException e) {
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
         if(ExcelUploadService.isValueExcelFile(file)){
@@ -180,10 +219,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+        if(ExcelUploadService.isValueExcelFile(file)){
+            try {
+                List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
+                this.employeeRepository.saveAll(employees);
+            }catch (IOException e) {
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
                 throw new IllegalStateException("the file is not a valid excel file");
             }
         }
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -222,4 +270,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 >>>>>>> 56d4993 (fix conflict from main branch)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+=======
+
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 }

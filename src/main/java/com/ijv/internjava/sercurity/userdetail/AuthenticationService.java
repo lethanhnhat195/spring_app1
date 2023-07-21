@@ -61,6 +61,9 @@ public class AuthenticationService {
     private RoleRepository roleRepository;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
     public ApiResponseDto authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -82,8 +85,11 @@ public class AuthenticationService {
                 .build();
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
     @Transactional(rollbackFor = SQLException.class)
     public ApiResponseDto register(RegisterRequest request) {
         List<String> error = validateRegister(request);
@@ -135,14 +141,20 @@ public class AuthenticationService {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
     public ApiResponseDto changePassword(PasswordUpdateRequest request , String jwt) {
         String newPassword = passwordEncoder.encode(request.getNewPassword());
         String username = jwtService.getUsernameFromToke(jwt.substring(7));
         Employee employee = employeeService.findByUsername(username).orElse(null);
         assert employee != null;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 =======
     @Transactional(rollbackFor = UsernameNotFoundException.class)
     public ApiResponseDto changePassword(PasswordUpdateRequest request) {
@@ -151,12 +163,16 @@ public class AuthenticationService {
 
         String newPassword = passwordEncoder.encode(request.getNewPassword());
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> a3e137a (create update employee and change password)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
         employee.setPassword(newPassword);
         employeeService.save(employee);
         return ApiResponseDto.builder()
@@ -167,8 +183,11 @@ public class AuthenticationService {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
     public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , String jwt){
         String username = jwtService.getUsernameFromToke(jwt.substring(7));
         Employee employee = employeeService.findByUsername(username).orElse(null);
@@ -179,6 +198,9 @@ public class AuthenticationService {
                 .message("change password success")
                 .status(CommonConstants.ApiStatus.STATUS_OK)
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 =======
     public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , Employee employee){
         BeanUtils.copyProperties(request,employee);
@@ -186,12 +208,16 @@ public class AuthenticationService {
         return ApiResponseDto.builder()
                 .message("Update success")
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> a3e137a (create update employee and change password)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
                 .build();
     }
 

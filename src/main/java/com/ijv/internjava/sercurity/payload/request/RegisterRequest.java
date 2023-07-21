@@ -31,9 +31,13 @@ public class RegisterRequest {
     private String address;
     @NotBlank(message = "not blank")
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
     private String email;
     private String image;
     private Set<String> roles;

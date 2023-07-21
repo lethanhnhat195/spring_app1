@@ -8,10 +8,14 @@ import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
 import com.ijv.internjava.utils.CommonConstants;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
 import io.jsonwebtoken.security.Keys;
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
 =======
@@ -22,6 +26,9 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
 import io.jsonwebtoken.security.Keys;
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> a3e137a (create update employee and change password)
+>>>>>>> 81be34c (Fix conflict on branch customer manager)
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
