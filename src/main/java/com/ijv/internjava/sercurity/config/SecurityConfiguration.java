@@ -1,5 +1,6 @@
 package com.ijv.internjava.sercurity.config;
 
+<<<<<<< HEAD
 import com.ijv.internjava.sercurity.jwt.JwtFilter;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -115,10 +116,26 @@ import java.io.IOException;
 >>>>>>> b3c47dc (update dependency maven)
 import java.util.Collections;
 import java.util.List;
+=======
+import com.ijv.internjava.sercurity.jwt.JwtEntrypoint;
+import com.ijv.internjava.sercurity.jwt.JwtFilter;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+<<<<<<< HEAD
 public class SecurityConfiguration {
 
     private final AuthenticationProvider authenticationProvider;
@@ -151,10 +168,17 @@ public class SecurityConfiguration {
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 >>>>>>> b3c47dc (update dependency maven)
 
+=======
+public class SecurityConfiguration  {
+    private final AuthenticationProvider authenticationProvider;
+    private final JwtFilter jwtFilter;
+    private final JwtEntrypoint jwtEntrypoint;
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
+<<<<<<< HEAD
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .authorizeHttpRequests(auth -> auth
 <<<<<<< HEAD
@@ -175,6 +199,10 @@ public class SecurityConfiguration {
 =======
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/abc/**").hasRole("ADMIN")
+=======
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/auth/**").permitAll()
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -184,8 +212,11 @@ public class SecurityConfiguration {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> b3c47dc (update dependency maven)
+=======
+>>>>>>> 6c35d5d (Fix conflict in branch customer manager)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
@@ -282,4 +313,9 @@ public class SecurityConfiguration {
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
 >>>>>>> b3c47dc (update dependency maven)
 
+=======
+                .build();
+    }
+
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
 }

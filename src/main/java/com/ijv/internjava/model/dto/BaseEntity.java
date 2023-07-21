@@ -1,25 +1,19 @@
 package com.ijv.internjava.model.dto;
-<<<<<<< HEAD
 import lombok.Getter;
 import lombok.Setter;
 
 import jakarta.persistence.*;
-=======
 
 import jakarta.persistence.*;
 import lombok.Data;
 
->>>>>>> 470e9af (create database with jpa)
 import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-<<<<<<< HEAD
 @Getter
 @Setter
-=======
-@Data
->>>>>>> 470e9af (create database with jpa)
+
 public abstract class BaseEntity implements Serializable {
     @Id
     @Column(name = "id")

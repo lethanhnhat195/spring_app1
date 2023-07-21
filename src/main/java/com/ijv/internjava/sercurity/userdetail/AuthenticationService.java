@@ -4,6 +4,7 @@ import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.RoleName;
 import com.ijv.internjava.model.entity.UserRole;
+<<<<<<< HEAD
 import com.ijv.internjava.repository.RoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
 import com.ijv.internjava.sercurity.jwt.JwtService;
@@ -40,6 +41,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 >>>>>>> e975b92 (fix conflict)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -47,6 +49,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> b3c47dc (update dependency maven)
+=======
+=======
+import com.ijv.internjava.repository.IRoleRepository;
+import com.ijv.internjava.repository.UserRoleRepository;
+import com.ijv.internjava.sercurity.jwt.JwtService;
+import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
+import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
+import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
+import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
+import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
+import com.ijv.internjava.service.IEmployeeService;
+import com.ijv.internjava.utils.CommonConstants;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
+>>>>>>> 6c35d5d (Fix conflict in branch customer manager)
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,6 +82,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthenticationService {
     @Autowired
+<<<<<<< HEAD
     private EmployeeService employeeService;
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -93,6 +116,17 @@ public class AuthenticationService {
                 .status(CommonConstants.ApiStatus.STATUS_OK)
                 .build();
     }
+=======
+    private IEmployeeService employeeService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+    @Autowired
+    private IRoleRepository roleRepository;
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
 
 <<<<<<< HEAD
 =======
@@ -124,6 +158,32 @@ public class AuthenticationService {
                 .build();
     }
 
+<<<<<<< HEAD
+=======
+    public ApiResponseDto authenticate(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
+        var user = EmployeeDetails.build(employeeService.findByUsername(request.getUsername())
+                .orElseThrow());
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        BeanUtils.copyProperties(user, employeeResponse);
+        AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
+                .token(jwtService.generateToken(user))
+                .employeeResponse(employeeResponse)
+                .build();
+        return ApiResponseDto.builder()
+                .code("abc")
+                .data(authenticationResponse)
+                .status(CommonConstants.ApiStatus.STATUS_OK)
+                .build();
+    }
+
+
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
     public List<String> validateRegister(RegisterRequest request) {
         List<String> error = new LinkedList<>();
         if (employeeService.existsByEmail(request.getEmail())) {
@@ -141,7 +201,11 @@ public class AuthenticationService {
         return error;
     }
 
+<<<<<<< HEAD
     public ApiResponseDto sendError(BindingResult bindingResult) {
+=======
+    public ApiResponseDto isError(RegisterRequest request, BindingResult bindingResult) {
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
         return ApiResponseDto.builder()
                 .status(CommonConstants.ApiStatus.STATUS_ERROR)
                 .data(bindingResult.getAllErrors())
@@ -151,10 +215,13 @@ public class AuthenticationService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> 6c35d5d (Fix conflict in branch customer manager)
     public ApiResponseDto changePassword(PasswordUpdateRequest request , String jwt) {
         String newPassword = passwordEncoder.encode(request.getNewPassword());
         String username = jwtService.getUsernameFromToke(jwt.substring(7));
@@ -189,12 +256,21 @@ public class AuthenticationService {
 =======
 >>>>>>> b3c47dc (update dependency maven)
         employee.setPassword(newPassword);
+=======
+    @Transactional(rollbackFor = UsernameNotFoundException.class)
+    public ApiResponseDto changePassword(PasswordUpdateRequest request) {
+        Employee employee = employeeService.findByUsername(request.getUsername()).orElseThrow(
+                () -> new UsernameNotFoundException("not found username")
+        );
+        employee.setPassword(passwordEncoder.encode(request.getNewPassword()));
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
         employeeService.save(employee);
         return ApiResponseDto.builder()
                 .message("change password success")
                 .status(CommonConstants.ApiStatus.STATUS_OK)
                 .build();
     }
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -242,4 +318,6 @@ public class AuthenticationService {
                 .build();
     }
 
+=======
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
 }

@@ -16,7 +16,6 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "services")
-<<<<<<< HEAD
 
 @Entity
 public class Services extends BaseEntity {
@@ -24,7 +23,6 @@ public class Services extends BaseEntity {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer id;
 
     @Column(name = "NAME", nullable = false)
     private String name;

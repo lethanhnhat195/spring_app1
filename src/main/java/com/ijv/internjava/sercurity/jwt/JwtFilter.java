@@ -3,10 +3,18 @@ package com.ijv.internjava.sercurity.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.utils.CommonConstants;
+<<<<<<< HEAD
+=======
+import io.jsonwebtoken.JwtException;
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+=======
+import jakarta.validation.constraints.NotNull;
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,11 +37,20 @@ public class JwtFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailService;
 
+<<<<<<< HEAD
     @Override
     protected void doFilterInternal(
              HttpServletRequest request,
              HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
+=======
+
+    @Override
+    protected void doFilterInternal(
+            @NotNull HttpServletRequest request,
+            @NotNull HttpServletResponse response,
+            @NotNull FilterChain filterChain) throws ServletException, IOException {
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         String username = null;
@@ -43,13 +60,24 @@ public class JwtFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         try {
+<<<<<<< HEAD
             username = jwtService.getUsernameFromToke(jwt);
         } catch (Exception e) {
+=======
+            username = jwtService.extractUsername(jwt);
+        } catch (JwtException e) {
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
             response.setStatus(400);
             response.setContentType("application/json");
             ObjectMapper objectMapper = new ObjectMapper();
             ApiResponseDto apiResponseDto = ApiResponseDto.builder()
+<<<<<<< HEAD
                     .message("Token no valid")
+=======
+                    .code("123")
+                    .message("Token no valid")
+                    .data(null)
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
                     .status(CommonConstants.ApiStatus.STATUS_ERROR)
                     .build();
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
@@ -57,6 +85,9 @@ public class JwtFilter extends OncePerRequestFilter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6c35d5d (Fix conflict in branch customer manager)
 =======
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 <<<<<<< HEAD
@@ -88,5 +119,21 @@ public class JwtFilter extends OncePerRequestFilter {
             );
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             filterChain.doFilter(request, response);
+=======
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = this.userDetailService.loadUserByUsername(username);
+            if (jwtService.isTokenValid(jwt, userDetails)) {
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null,
+                        userDetails.getAuthorities()
+                );
+                authenticationToken.setDetails(
+                        new WebAuthenticationDetailsSource().buildDetails(request)
+                );
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            }
+            filterChain.doFilter(request, response);
+        }
+>>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
     }
 }
