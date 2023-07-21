@@ -23,21 +23,14 @@ public interface EmployeeService {
     Employee resetPassword(Long id, Employee employeeDetail);
 
     void saveEmployeesToDatabase(MultipartFile file);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
     Optional<Employee> findByUsername(String username);
 
     boolean existsByEmail(String email);
 
-=======
     Optional<Employee> findByUsername(String username);
 
     boolean existsByEmail(String email);
 
->>>>>>> b3c47dc (update dependency maven)
     boolean existsByUsername(String username);
 
     boolean existsByPhone(String phone);

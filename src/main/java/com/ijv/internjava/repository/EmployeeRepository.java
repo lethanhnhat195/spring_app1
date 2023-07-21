@@ -8,10 +8,14 @@ import org.springframework.stereotype.Repository;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fe4beda (Fix conflict in branch customer manager)
 import org.springframework.transaction.annotation.Transactional;
 =======
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 =======
+<<<<<<< HEAD
 import org.springframework.transaction.annotation.Transactional;
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
@@ -19,6 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 =======
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 >>>>>>> b3c47dc (update dependency maven)
+=======
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> fe4beda (Fix conflict in branch customer manager)
 
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +34,14 @@ import java.util.Optional;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fe4beda (Fix conflict in branch customer manager)
 @Transactional
 =======
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 =======
+<<<<<<< HEAD
 @Transactional
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
@@ -38,6 +49,9 @@ import java.util.Optional;
 =======
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 >>>>>>> b3c47dc (update dependency maven)
+=======
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> fe4beda (Fix conflict in branch customer manager)
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query("SELECT e FROM Employee e WHERE e.name LIKE %?1% " +
@@ -51,10 +65,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> b3c47dc (update dependency maven)
+=======
+>>>>>>> fe4beda (Fix conflict in branch customer manager)
     Optional<Employee> findByUsername(String username);
 
     boolean existsByEmail(String email);
@@ -68,11 +85,16 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 =======
+<<<<<<< HEAD
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 =======
 
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 >>>>>>> b3c47dc (update dependency maven)
+=======
+
+>>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+>>>>>>> fe4beda (Fix conflict in branch customer manager)
 
 }

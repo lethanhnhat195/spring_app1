@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.NaturalId;
 
-import org.hibernate.annotations.NaturalId;
-
 import java.util.LinkedHashSet;
 import java.util.Set;
 
