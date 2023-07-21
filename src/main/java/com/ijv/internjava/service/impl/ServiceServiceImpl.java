@@ -9,6 +9,7 @@ import com.ijv.internjava.model.entity.ServicesImage;
 import com.ijv.internjava.repository.ServiceImageRepository;
 import com.ijv.internjava.repository.ServiceRepository;
 import com.ijv.internjava.service.ServiceService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,7 +33,8 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public ServiceDto detail(Long id) {
-        Service service = serviceRepository.findById(id).get();
+        Service service = serviceRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException(String.format("Service with id [%d] was not found!", id)));
         return ServiceMapper.getInstance().toDto(service);
     }
 
@@ -59,7 +61,8 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public ServiceDto edit(ServiceDto serviceDto, Long id) {
-        Service service = serviceRepository.findById(id).get();
+        Service service = serviceRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException(String.format("Service with id [%d] was not found!", id)));
         service.setName(serviceDto.getName());
         service.setPrice(serviceDto.getPrice());
         service.setServiceTime(serviceDto.getServiceTime());
@@ -74,7 +77,8 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public void delete(long id) {
-        Service service = serviceRepository.findById(id).get();
+        Service service = serviceRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException(String.format("Service with id [%d] was not found!", id)));
         for (ServicesImage serviceImage : service.getServicesImages()) {
             serviceImageRepository.deleteById(serviceImage.getId());
         }

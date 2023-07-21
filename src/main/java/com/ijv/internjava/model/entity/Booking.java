@@ -1,7 +1,6 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,37 +9,38 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "booking")
+@Table(name = "BOOKING")
 @Getter
 @Setter
 public class Booking extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_name", nullable = false, length = 100)
-    private String customerName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    private Customer customer;
 
-    @Column(name = "phone_number", nullable = false, length = 10)
+    @Column(name = "PHONE_NUMBER", nullable = false, length = 10)
     private String phoneNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "booking_date", nullable = false)
+    @Column(name = "BOOKING_DATE", nullable = false)
     private Date bookingDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "from_time", nullable = false)
+    @Column(name = "FROM_TIME", nullable = false)
     private Date fromTime;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "to_time", nullable = false)
+    @Column(name = "TO_TIME", nullable = false)
     private Date toTime;
 
-    @Column(name = "note", length = 500)
+    @Column(name = "NOTE", length = 500)
     private String note;
 
-    @Column(name = "status")
+    @Column(name = "STATUS")
     private Integer status;
 
     @OneToMany(mappedBy = "booking")

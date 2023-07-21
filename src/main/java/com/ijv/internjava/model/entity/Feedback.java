@@ -1,7 +1,6 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,40 +8,40 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "feedbacks", indexes = {
-        @Index(name = "services_id", columnList = "services_id")
+@Table(name = "FEEDBACKS", indexes = {
+        @Index(name = "SERVICES_ID", columnList = "SERVICES_ID")
 })
 @Getter
 @Setter
 public class Feedback extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 50)
+    @Column(name = "EMAIL", nullable = false, length = 50)
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "services_id", nullable = false)
+    @JoinColumn(name = "SERVICES_ID", nullable = false)
     private Service services;
 
-    @Column(name = "title", length = 256)
+    @Column(name = "TITLE", length = 256)
     private String title;
 
-    @Column(name = "content", length = 256)
+    @Column(name = "CONTENT", length = 256)
     private String content;
 
-    @Column(name = "reply_id")
+    @Column(name = "REPLY_ID")
     private Long replyId;
 
-    @Column(name = "rating")
+    @Column(name = "RATING")
     private Integer rating;
 
-    @OneToMany(mappedBy = "feedbacks")
+    @OneToMany(mappedBy = "FEEDBACKS")
     private Set<Reply> replies = new LinkedHashSet<>();
 
 }

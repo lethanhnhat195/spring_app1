@@ -1,7 +1,6 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,38 +9,30 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "work_shift")
+@Table(name = "WORK_SHIFT")
 @Getter
 @Setter
 public class WorkShift extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "working_from_time", nullable = false)
+    @Column(name = "WORKING_FROM_TIME", nullable = false)
     private Date workingFromTime;
 
-    @Column(name = "working_to_time", nullable = false)
+    @Column(name = "WORKING_TO_TIME", nullable = false)
     private Date workingToTime;
 
-    @Column(name = "is_default")
+    @Column(name = "IS_DEFAULT")
     private Boolean isDefault;
 
-    @Column(name = "description", length = 500)
+    @Column(name = "DESCRIPTION", length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "workShift")
+    @OneToMany(mappedBy = "workshift")
     private Set<Employee> employees = new LinkedHashSet<>();
-  
-    public WorkShift(Long id) {
-        this.id = id;
-    }
-
-    public WorkShift() {
-
-    }
 }

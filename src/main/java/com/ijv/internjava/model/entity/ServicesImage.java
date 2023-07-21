@@ -1,28 +1,27 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 
 @Entity
-@Table(name = "services_image", indexes = {
-        @Index(name = "service_id", columnList = "service_id")
+@Table(name = "SERVICES_IMAGE", indexes = {
+        @Index(name = "SERVICE_ID", columnList = "SERVICE_ID")
 })
 @Getter
 @Setter
 public class ServicesImage extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "service_id", nullable = false)
+    @JoinColumn(name = "SERVICE_ID", nullable = false)
     private Service service;
 
-    @Column(name = "name_file", nullable = false, length = 256)
+    @Column(name = "NAME_FILE", nullable = false, length = 256)
     private String nameFile;
 
 }

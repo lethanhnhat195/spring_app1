@@ -1,81 +1,62 @@
 package com.ijv.internjava.model.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "employees", indexes = {
-        @Index(name = "work_shift_id", columnList = "work_shift_id")
+@Table(name = "EMPLOYEES", indexes = {
+        @Index(name = "WORK_SHIFT_ID", columnList = "WORK_SHIFT_ID")
 })
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-
+@Getter
+@Setter
 public class Employee {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "gender")
+    @Column(name = "GENDER")
     private Boolean gender;
 
-    @Column(name = "birthday")
+    @Column(name = "BIRTHDAY")
     private Date birthday;
 
-    @Column(name = "phone", nullable = false, length = 10)
+    @Column(name = "PHONE", nullable = false, length = 10)
     private String phone;
 
-    @Column(name = "address", length = 500)
+    @Column(name = "ADDRESS", length = 500)
     private String address;
 
-    @Column(name = "email", nullable = false, length = 100)
+    @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
 
-    @Column(name = "image", length = 200)
+    @Column(name = "IMAGE", length = 200)
     private String image;
 
-    @Column(name = "user_name", nullable = false, length = 50)
-    private String userName;
+    @Column(name = "USER_NAME", nullable = false, length = 50)
+    private String username;
 
-    @Column(name = "password", nullable = false, length = 100)
+    @Column(name = "PASSWORD", nullable = false, length = 100)
     private String password;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "work_shift_id", nullable = false)
+    @JoinColumn(name = "WORK_SHIFT_ID", nullable = false)
     private WorkShift workShift;
-
-    @Column(name = "created_by", length = 100)
-    private String createdBy;
-
-    @Column(name = "created_on")
-    private Date createdOn;
-
-    @Column(name = "updated_by", length = 100)
-    private String updatedBy;
-
-    @Column(name = "updated_on")
-    private Date updatedOn;
-
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
 
     @OneToMany(mappedBy = "employee")
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany
+    @JoinTable(name = "USER_ROLE",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     private Set<Role> roles = new LinkedHashSet<>();
 
 }

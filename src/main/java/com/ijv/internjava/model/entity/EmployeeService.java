@@ -1,31 +1,30 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "employee_service", indexes = {
-        @Index(name = "employee_id", columnList = "employee_id"),
-        @Index(name = "service_id", columnList = "service_id")
+@Table(name = "EMPLOYEE_SERVICE", indexes = {
+        @Index(name = "EMPLOYEE_ID", columnList = "EMPLOYEE_ID"),
+        @Index(name = "SERVICE_ID", columnList = "SERVICE_ID")
 })
 @Getter
 @Setter
 public class EmployeeService extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "EMPLOYEE_ID", nullable = false)
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "service_id", nullable = false)
+    @JoinColumn(name = "SERVICE_ID", nullable = false)
     private Service service;
 
-    @Column(name = "note", length = 500)
+    @Column(name = "NOTE", length = 500)
     private String note;
 }
