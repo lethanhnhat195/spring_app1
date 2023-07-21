@@ -43,12 +43,12 @@ public class Employee {
 
     @Column(name = "image", length = 200)
     private String image;
-<<<<<<< HEAD
+
     @Column(name = "username", nullable = false, length = 50)
-=======
+
 
     @Column(name = "user_name", nullable = false, length = 50)
->>>>>>> 56d4993 (fix conflict from main branch)
+
     private String username;
 
     @Column(name = "password", nullable = false, length = 100)

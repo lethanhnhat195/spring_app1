@@ -8,14 +8,18 @@ import com.ijv.internjava.repository.RoleRepository;
 import com.ijv.internjava.repository.UserRoleRepository;
 import com.ijv.internjava.sercurity.jwt.JwtService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 >>>>>>> e975b92 (fix conflict)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
 import com.ijv.internjava.service.EmployeeService;
 import com.ijv.internjava.utils.CommonConstants;
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -29,6 +33,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 >>>>>>> e975b92 (fix conflict)
+=======
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +60,7 @@ public class AuthenticationService {
     @Autowired
     private RoleRepository roleRepository;
 
+<<<<<<< HEAD
     public ApiResponseDto authenticate(AuthenticationRequest request, HttpServletRequest httpServletRequest) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -72,6 +82,8 @@ public class AuthenticationService {
                 .build();
     }
 
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
     @Transactional(rollbackFor = SQLException.class)
     public ApiResponseDto register(RegisterRequest request) {
         List<String> error = validateRegister(request);
@@ -122,11 +134,15 @@ public class AuthenticationService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
     public ApiResponseDto changePassword(PasswordUpdateRequest request , String jwt) {
         String newPassword = passwordEncoder.encode(request.getNewPassword());
         String username = jwtService.getUsernameFromToke(jwt.substring(7));
         Employee employee = employeeService.findByUsername(username).orElse(null);
         assert employee != null;
+<<<<<<< HEAD
 =======
     @Transactional(rollbackFor = UsernameNotFoundException.class)
     public ApiResponseDto changePassword(PasswordUpdateRequest request) {
@@ -139,6 +155,8 @@ public class AuthenticationService {
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
         employee.setPassword(newPassword);
         employeeService.save(employee);
         return ApiResponseDto.builder()
@@ -148,6 +166,9 @@ public class AuthenticationService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
     public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , String jwt){
         String username = jwtService.getUsernameFromToke(jwt.substring(7));
         Employee employee = employeeService.findByUsername(username).orElse(null);
@@ -157,6 +178,7 @@ public class AuthenticationService {
         return ApiResponseDto.builder()
                 .message("change password success")
                 .status(CommonConstants.ApiStatus.STATUS_OK)
+<<<<<<< HEAD
 =======
     public ApiResponseDto updateEmployee(EmployeeUpdateRequest request , Employee employee){
         BeanUtils.copyProperties(request,employee);
@@ -168,6 +190,8 @@ public class AuthenticationService {
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
                 .build();
     }
 

@@ -39,5 +39,6 @@ public class WorkShift extends BaseEntity {
     }
 
     public WorkShift() {
+<<<<<<< HEAD
     }
 }

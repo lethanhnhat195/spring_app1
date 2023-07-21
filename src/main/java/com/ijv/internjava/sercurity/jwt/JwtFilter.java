@@ -55,6 +55,7 @@ public class JwtFilter extends OncePerRequestFilter {
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 <<<<<<< HEAD
@@ -62,6 +63,8 @@ public class JwtFilter extends OncePerRequestFilter {
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
             UserDetails userDetails = userDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null,

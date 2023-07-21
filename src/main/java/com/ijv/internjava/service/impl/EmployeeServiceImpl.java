@@ -1,10 +1,13 @@
 package com.ijv.internjava.service.impl;
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
 
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 import com.ijv.internjava.exception.ResourceNotFoundException;
 import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.WorkShift;
@@ -43,6 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee createEmployee(Employee employee) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         Optional<Employee> employeeByEmail = employeeRepository.findEmployeeByEmail(employee.getEmail());
 <<<<<<< HEAD
         if (employeeByEmail.isPresent()) {
@@ -52,6 +56,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 >>>>>>> 56d4993 (fix conflict from main branch)
         if(employeeByEmail.isPresent()) {
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+=======
+        Optional<Employee> employeeByEmail = EmployeeRepository.findEmployeeByEmail(employee.getEmail());
+        if(employeeByEmail.isPresent()) {
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
             throw new IllegalStateException("email taken");
         }
         return EmployeeRepository.save(employee);
@@ -66,6 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee updateEmployee(Long id, Employee employeeDetail) {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
@@ -97,6 +106,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if (optionalEmployee.isPresent()){
             Employee employee = optionalEmployee.get();
+=======
+       Optional<Employee> optionalEmployee = EmployeeRepository.findById(id);
+
+       if (optionalEmployee.isPresent()){
+           Employee employee = optionalEmployee.get();
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 
            employee.setName(employeeDetail.getName());
            employee.setGender(employeeDetail.getGender());
@@ -115,7 +130,10 @@ public class EmployeeServiceImpl implements EmployeeService {
            throw new ResourceNotFoundException("Employee not exist with id : " + id);
        }
     }
+<<<<<<< HEAD
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 
     @Override
     public void deleteEmployee(Long id) {
@@ -125,9 +143,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     @Override
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+=======
+    @Override
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
     public Employee resetPassword(Long id, Employee employeeDetail) {
         final String passwordDefault = "A123456@";
         Employee employee = EmployeeRepository.findById(id).orElseThrow(() ->
@@ -140,28 +162,37 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public void saveEmployeesToDatabase(MultipartFile file) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (ExcelUploadService.isValueExcelFile(file)) {
             try {
                 List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
                 this.employeeRepository.saveAll(employees);
             } catch (IOException e) {
 =======
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
         if(ExcelUploadService.isValueExcelFile(file)){
             try {
                 List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
                 this.EmployeeRepository.saveAll(employees);
             }catch (IOException e) {
+<<<<<<< HEAD
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
                 throw new IllegalStateException("the file is not a valid excel file");
             }
         }
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 =======
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
   
     @Override
     public Optional<Employee> findByUsername(String username) {
@@ -187,5 +218,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void save(Employee employee) {
         EmployeeRepository.save(employee);
     }
+<<<<<<< HEAD
 >>>>>>> 56d4993 (fix conflict from main branch)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 }

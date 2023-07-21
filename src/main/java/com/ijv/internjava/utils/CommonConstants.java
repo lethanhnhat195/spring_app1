@@ -17,12 +17,16 @@ public class CommonConstants {
 
     public static class MessageError {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
         public static final String ERROR_AUTHENTICATE = "c";
         public static final String ER017 ="a";
     }
 
     public static class MessageSuccess {
         public static final String SC007 ="b";
+<<<<<<< HEAD
 =======
         public static final String ERROR_AUTHENTICATE = "";
         public static final String ER017 ="";
@@ -35,6 +39,8 @@ public class CommonConstants {
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+=======
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
     }
 
     public static class Params {

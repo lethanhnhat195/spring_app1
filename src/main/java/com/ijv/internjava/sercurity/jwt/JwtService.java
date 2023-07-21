@@ -7,6 +7,7 @@ import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
 
 import com.ijv.internjava.utils.CommonConstants;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
 import io.jsonwebtoken.security.Keys;
@@ -16,6 +17,11 @@ import io.jsonwebtoken.security.Keys;
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+=======
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
+import io.jsonwebtoken.security.Keys;
+>>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
