@@ -1,19 +1,11 @@
 package com.ijv.internjava.controller;
 
-import com.ijv.internjava.model.dto.ApiResponseDto;
-import com.ijv.internjava.model.entity.Employee;
-import com.ijv.internjava.model.entity.EmployeeService;
-import com.ijv.internjava.sercurity.jwt.JwtService;
-import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.userdetail.AuthenticationService;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
-import com.ijv.internjava.service.IEmployeeService;
-import com.ijv.internjava.utils.CommonConstants;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -22,57 +14,43 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-public class SecurityController {
+public class SecurityController extends BaseController{
 
-    @Autowired
-    private IEmployeeService employeeService;
     private final AuthenticationService service;
-    @Autowired
-    private JwtService jwtService;
 
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponseDto> signup(@Validated @RequestBody RegisterRequest request, BindingResult bindingResult) {
+    public ResponseEntity<?> signup(@Validated @RequestBody RegisterRequest request, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(service.isError(request, bindingResult));
+            return failed("User sign up no valid",bindingResult.getAllErrors().toArray());
         }
-        return ResponseEntity.ok(service.register(request));
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<ApiResponseDto> login(@RequestBody AuthenticationRequest request,HttpServletRequest httpServletRequest) {
-        return ResponseEntity.ok(service.authenticate(request,httpServletRequest));
+        return success("Sign up success",service.register(request),null);
     }
 
     @PutMapping("/update-user-info")
-    public ResponseEntity<ApiResponseDto> updateUserInfo(@Validated @RequestBody EmployeeUpdateRequest request
+    public ResponseEntity<?> updateUserInfo(@Validated @RequestBody EmployeeUpdateRequest request
             ,BindingResult bindingResult, HttpServletRequest httpServletRequest) {
-        String username = jwtService.getUsernameFromToke(httpServletRequest.getHeader("Authorization").substring(7));
-        Employee employee = employeeService.findByUsername(username).orElse(null);
-        if(employee == null){
-            return  ResponseEntity.badRequest().body(
-                    ApiResponseDto
-                            .builder()
-                            .message("User not found")
-                            .build()
-            );
+        new EmployeeUpdateRequest().validate(request,bindingResult);
+        if(bindingResult.hasErrors()) {
+            return failed("User sign up no valid",bindingResult.getAllErrors().toArray());
         }
-        request.setId(employee.getId());
-        return ResponseEntity.ok().body(service.updateEmployee(request,employee));
+        String auth = httpServletRequest.getHeader("Authorization");
+        if(auth == null || !auth.startsWith("Bearer ")){
+            return failed("User not found",bindingResult.getAllErrors().toArray());
+        }
+        return success("Update success",service.updateEmployee(request,auth),null);
     }
 
     @PutMapping("/change-password")
-    public ResponseEntity<ApiResponseDto> changeEmployeePassword(@Validated @RequestBody PasswordUpdateRequest request, BindingResult bindingResult
-            , HttpServletRequest httpServletRequest) {
-        String username = jwtService.getUsernameFromToke(httpServletRequest.getHeader("Authorization").substring(7));
-        Employee employee = employeeService.findByUsername(username).orElse(null);
-        if(employee == null){
-            return  ResponseEntity.badRequest().body(
-                    ApiResponseDto
-                            .builder()
-                            .message("User not found")
-                            .build()
-            );
+    public ResponseEntity<?> changeEmployeePassword(@Validated @RequestBody PasswordUpdateRequest request, BindingResult bindingResult
+          , HttpServletRequest httpServletRequest) {
+        new PasswordUpdateRequest().validate(request,bindingResult);
+        if(bindingResult.hasErrors()){
+            return failed("Password no valid",bindingResult.getAllErrors().toArray());
         }
-        return ResponseEntity.ok().body(service.changePassword(request));
+        String auth = httpServletRequest.getHeader("Authorization");
+        if(auth == null || !auth.startsWith("Bearer ")){
+            return failed("User not found",bindingResult.getAllErrors().toArray());
+        }
+        return success("Change password success",service.changePassword(request,auth),null);
     }
 }
