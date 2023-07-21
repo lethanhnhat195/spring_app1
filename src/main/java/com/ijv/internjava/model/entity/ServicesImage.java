@@ -3,6 +3,7 @@ package com.ijv.internjava.model.entity;
 import com.ijv.internjava.model.dto.BaseEntity;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -58,10 +59,27 @@ public class ServicesImage extends BaseEntity {
 =======
     @Column(name = "ID", nullable = false)
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Entity
+@Table(name = "services_image", indexes = {
+        @Index(name = "service_id", columnList = "service_id")
+})
+@Getter
+@Setter
+public class ServicesImage extends BaseEntity {
+    @Id
+    @Column(name = "id", nullable = false)
+>>>>>>> 470e9af (create database with jpa)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     @JoinColumn(name = "SERVICE_ID", nullable = false)
@@ -91,3 +109,12 @@ public class ServicesImage extends BaseEntity {
 >>>>>>> 49c445e (spring_app)
 }
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+    @JoinColumn(name = "service_id", nullable = false)
+    private Service service;
+
+    @Column(name = "name_file", nullable = false, length = 256)
+    private String nameFile;
+
+}
+>>>>>>> 470e9af (create database with jpa)

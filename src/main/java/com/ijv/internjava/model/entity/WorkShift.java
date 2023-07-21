@@ -1,84 +1,45 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-<<<<<<< HEAD
-
-<<<<<<< HEAD
 import jakarta.persistence.*;
-import lombok.*;
-
-=======
-import javax.persistence.*;
->>>>>>> 49c445e (spring_app)
-=======
-import lombok.*;
-
-import jakarta.persistence.*;
->>>>>>> ac64e9d (First 5 Feature of Customer Manager)
+import lombok.Getter;
+import lombok.Setter;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-<<<<<<< HEAD
-
-@Builder
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
-@Table(name = "work_shift")
-=======
-<<<<<<< HEAD
-@Getter
-@Setter
 @Entity
-=======
-@Builder
+@Table(name = "work_shift")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString(onlyExplicitlyIncluded = true)
->>>>>>> ac64e9d (First 5 Feature of Customer Manager)
-@Table(name = "work_shift")
-@Entity
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
 public class WorkShift extends BaseEntity {
     @Id
-    @Column(name = "ID", nullable = false)
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "WORKING_FROM_TIME", nullable = false)
+    @Column(name = "working_from_time", nullable = false)
     private Date workingFromTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "WORKING_TO_TIME", nullable = false)
+    @Column(name = "working_to_time", nullable = false)
     private Date workingToTime;
 
-    @Column(name = "IS_DEFAULT")
+    @Column(name = "is_default")
     private Boolean isDefault;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "description", length = 500)
     private String description;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    /*JPA Require Constructor*/
-    public WorkShift() {
+    @OneToMany(mappedBy = "workShift")
+    private Set<Employee> employees = new LinkedHashSet<>();
+
+    public WorkShift(Long id) {
+        this.id = id;
     }
 
->>>>>>> 49c445e (spring_app)
-=======
->>>>>>> ac64e9d (First 5 Feature of Customer Manager)
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "workShiftId")
-    private Set<Employees> employees = new LinkedHashSet<>();
+    public WorkShift() {
+
+    }
 }
