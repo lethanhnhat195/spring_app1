@@ -2,6 +2,7 @@ package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

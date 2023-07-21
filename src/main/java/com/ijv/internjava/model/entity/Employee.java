@@ -11,10 +11,12 @@ import java.util.Set;
 @Table(name = "employees", indexes = {
         @Index(name = "work_shift_id", columnList = "work_shift_id")
 })
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 public class Employee {
     @Id
     @Column(name = "id", nullable = false)
@@ -42,8 +44,8 @@ public class Employee {
     @Column(name = "image", length = 200)
     private String image;
 
-    @Column(name = "username", nullable = false, length = 50)
-    private String username;
+    @Column(name = "user_name", nullable = false, length = 50)
+    private String userName;
 
     @Column(name = "password", nullable = false, length = 100)
     private String password;
@@ -66,7 +68,6 @@ public class Employee {
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
-
 
     @OneToMany(mappedBy = "employee")
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();
