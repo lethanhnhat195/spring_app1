@@ -38,8 +38,15 @@ import org.springframework.http.HttpStatus;
 =======
 =======
 import org.springframework.http.HttpStatus;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -60,10 +67,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -71,6 +82,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -91,8 +104,15 @@ import java.io.IOException;
 =======
 =======
 import java.io.IOException;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 import java.util.Collections;
 import java.util.List;
 
@@ -121,8 +141,15 @@ public class SecurityConfiguration {
     private final String[] PUBLIC_URL = {"/login","/api/auth/**"};
 =======
     private final JwtEntrypoint jwtEntrypoint;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -156,15 +183,21 @@ public class SecurityConfiguration {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
                 .logout().logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpStatus.OK.value()))
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true).
@@ -188,8 +221,15 @@ public class SecurityConfiguration {
 =======
 
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -232,7 +272,14 @@ public class SecurityConfiguration {
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 
 }

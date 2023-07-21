@@ -9,11 +9,17 @@ import com.ijv.internjava.repository.UserRoleRepository;
 import com.ijv.internjava.sercurity.jwt.JwtService;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 >>>>>>> e975b92 (fix conflict)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+=======
+import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> b3c47dc (update dependency maven)
 import com.ijv.internjava.sercurity.payload.request.EmployeeUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
@@ -33,11 +39,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 >>>>>>> e975b92 (fix conflict)
+<<<<<<< HEAD
 =======
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> b3c47dc (update dependency maven)
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -164,15 +173,21 @@ public class AuthenticationService {
         String newPassword = passwordEncoder.encode(request.getNewPassword());
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
         employee.setPassword(newPassword);
         employeeService.save(employee);
         return ApiResponseDto.builder()
@@ -209,15 +224,21 @@ public class AuthenticationService {
                 .message("Update success")
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
                 .build();
     }
 

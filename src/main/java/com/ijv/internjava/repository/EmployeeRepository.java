@@ -7,12 +7,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.transaction.annotation.Transactional;
 =======
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 =======
 import org.springframework.transaction.annotation.Transactional;
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+import org.springframework.transaction.annotation.Transactional;
+=======
+>>>>>>> fb13f8d (create repository, service and controller for employee management)
+>>>>>>> b3c47dc (update dependency maven)
 
 import java.util.List;
 import java.util.Optional;
@@ -20,12 +26,18 @@ import java.util.Optional;
 @Repository
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 @Transactional
 =======
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 =======
 @Transactional
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+@Transactional
+=======
+>>>>>>> fb13f8d (create repository, service and controller for employee management)
+>>>>>>> b3c47dc (update dependency maven)
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query("SELECT e FROM Employee e WHERE e.name LIKE %?1% " +
@@ -38,8 +50,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> b3c47dc (update dependency maven)
     Optional<Employee> findByUsername(String username);
 
     boolean existsByEmail(String email);
@@ -48,10 +63,16 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     boolean existsByPhone(String phone);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> fb13f8d (create repository, service and controller for employee management)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+=======
+
+>>>>>>> fb13f8d (create repository, service and controller for employee management)
+>>>>>>> b3c47dc (update dependency maven)
 
 }

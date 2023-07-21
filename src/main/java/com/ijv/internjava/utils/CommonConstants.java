@@ -42,15 +42,21 @@ public class CommonConstants {
         public static final String SC007 ="";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
     }
 
     public static class Params {

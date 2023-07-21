@@ -18,8 +18,15 @@ import com.ijv.internjava.model.entity.Employee;
 =======
 =======
 import com.ijv.internjava.model.entity.Employee;
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 import com.ijv.internjava.sercurity.jwt.JwtService;
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
@@ -27,6 +34,9 @@ import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
 import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 import com.ijv.internjava.utils.CommonConstants;
 import com.ijv.internjava.utils.MessageUtils;
 import jakarta.servlet.FilterChain;
@@ -55,9 +65,12 @@ import com.ijv.internjava.utils.CommonConstants;
 import com.ijv.internjava.utils.MessageUtils;
 import jakarta.servlet.FilterChain;
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -67,15 +80,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -92,10 +111,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.stereotype.Component;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -103,6 +126,8 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
 
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -124,8 +149,15 @@ import java.util.stream.Collectors;
 =======
 @PropertySource("classpath:application.properties")
 @RequiredArgsConstructor
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     AuthenticationManager authenticationManager;
@@ -161,15 +193,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
         String requestData = "";
         try {
             requestData = request.getReader().lines().collect(Collectors.joining());
@@ -190,10 +228,14 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         AuthenticationRequest authenticationRequest = null;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
         String username;
         String password;
@@ -202,6 +244,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
         try {
             authenticationRequest = new Gson().fromJson(requestData, AuthenticationRequest.class);
             username = authenticationRequest.getUsername();
@@ -223,10 +267,14 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         return authenticationManager.authenticate(authToken);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
         Authentication auth = authenticationManager.authenticate(authToken);
@@ -235,6 +283,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
     }
 
     @Override
@@ -263,15 +313,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
                 .token(token)
                 .employeeResponse(employeeResponse)
                 .typeOfToken("Bearer")
@@ -295,8 +351,15 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .message(null).data(authenticationResponse)
 =======
                 .message(messageUtils.getMessage(CommonConstants.MessageSuccess.SC007, null)).data(authenticationResponse)
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
                 .status(CommonConstants.ApiStatus.STATUS_OK).build();
         try {
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
@@ -329,15 +392,21 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .message(messageUtils.getMessage(CommonConstants.MessageError.ERROR_AUTHENTICATE, null)).data(null)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 >>>>>>> a3e137a (create update employee and change password)
 =======
 >>>>>>> e975b92 (fix conflict)
 >>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 >>>>>>> a3e137a (create update employee and change password)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
                 .status(CommonConstants.ApiStatus.STATUS_ERROR).build();
         try {
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
@@ -376,6 +445,13 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
 =======
 =======
+<<<<<<< HEAD
 >>>>>>> a3e137a (create update employee and change password)
+<<<<<<< HEAD
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+>>>>>>> e975b92 (fix conflict)
+>>>>>>> 59b5f10 (Fix conflict on branch Customer Manager)
+>>>>>>> b3c47dc (update dependency maven)
 }

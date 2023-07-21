@@ -50,11 +50,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee createEmployee(Employee employee) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
         Optional<Employee> employeeByEmail = employeeRepository.findEmployeeByEmail(employee.getEmail());
 <<<<<<< HEAD
         if (employeeByEmail.isPresent()) {
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 =======
         Optional<Employee> employeeByEmail = EmployeeRepository.findEmployeeByEmail(employee.getEmail());
 >>>>>>> 56d4993 (fix conflict from main branch)
@@ -86,8 +92,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> b3c47dc (update dependency maven)
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
 
         if (optionalEmployee.isPresent()) {
@@ -112,6 +121,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 =======
        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
        Optional<Employee> optionalEmployee = EmployeeRepository.findById(id);
 >>>>>>> 56d4993 (fix conflict from main branch)
@@ -129,6 +139,14 @@ public class EmployeeServiceImpl implements EmployeeService {
        if (optionalEmployee.isPresent()){
            Employee employee = optionalEmployee.get();
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+=======
+       Optional<Employee> optionalEmployee = EmployeeRepository.findById(id);
+>>>>>>> 56d4993 (fix conflict from main branch)
+
+        if (optionalEmployee.isPresent()){
+            Employee employee = optionalEmployee.get();
+>>>>>>> b3c47dc (update dependency maven)
 
            employee.setName(employeeDetail.getName());
            employee.setGender(employeeDetail.getGender());
@@ -137,19 +155,27 @@ public class EmployeeServiceImpl implements EmployeeService {
            employee.setPhone(employeeDetail.getPhone());
            employee.setEmail(employeeDetail.getEmail());
 <<<<<<< HEAD
+<<<<<<< HEAD
            employee.setUsername(employeeDetail.getUsername());
 =======
            employee.setUserName(employeeDetail.getUserName());
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+           employee.setUsername(employeeDetail.getUsername());
+>>>>>>> b3c47dc (update dependency maven)
            employee.setPassword(employeeDetail.getPassword());
            employee.setImage(employeeDetail.getImage());
            employee.setWorkShift(new WorkShift(employeeDetail.getId()));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
            Employee updateEmployee = EmployeeRepository.save(employee);
 =======
            Employee updateEmployee = employeeRepository.save(employee);
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+           Employee updateEmployee = EmployeeRepository.save(employee);
+>>>>>>> b3c47dc (update dependency maven)
            return updateEmployee;
        }else {
            throw new ResourceNotFoundException("Employee not exist with id : " + id);
@@ -223,7 +249,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if(ExcelUploadService.isValueExcelFile(file)){
             try {
                 List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
-                this.employeeRepository.saveAll(employees);
+                this.EmployeeRepository.saveAll(employees);
             }catch (IOException e) {
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
@@ -235,12 +261,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b3c47dc (update dependency maven)
 =======
 
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
+=======
+>>>>>>> b3c47dc (update dependency maven)
   
     @Override
     public Optional<Employee> findByUsername(String username) {
@@ -267,6 +299,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeRepository.save(employee);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 56d4993 (fix conflict from main branch)
 =======
 >>>>>>> 57ad015e475eb543278e989af430ce5bbbf34333
@@ -275,4 +308,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 >>>>>>> 2fb74d8 (create repository, service and controller for employee management)
 >>>>>>> 81be34c (Fix conflict on branch customer manager)
+=======
+>>>>>>> 56d4993 (fix conflict from main branch)
+>>>>>>> b3c47dc (update dependency maven)
 }
