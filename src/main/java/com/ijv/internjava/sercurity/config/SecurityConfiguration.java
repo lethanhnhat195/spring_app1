@@ -1,13 +1,20 @@
 package com.ijv.internjava.sercurity.config;
 
 import com.ijv.internjava.sercurity.jwt.JwtFilter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+<<<<<<< HEAD
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+=======
+import org.springframework.http.HttpStatus;
+>>>>>>> a3e137a (create update employee and change password)
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -16,13 +23,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+<<<<<<< HEAD
+=======
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+>>>>>>> a3e137a (create update employee and change password)
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+<<<<<<< HEAD
+=======
+import java.io.IOException;
+>>>>>>> a3e137a (create update employee and change password)
 import java.util.Collections;
 import java.util.List;
 
@@ -33,7 +49,11 @@ public class SecurityConfiguration {
 
     private final AuthenticationProvider authenticationProvider;
     private final JwtFilter jwtFilter;
+<<<<<<< HEAD
     private final String[] PUBLIC_URL = {"/login","/api/auth/**"};
+=======
+    private final JwtEntrypoint jwtEntrypoint;
+>>>>>>> a3e137a (create update employee and change password)
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -41,10 +61,21 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .authorizeHttpRequests(auth -> auth
+<<<<<<< HEAD
                         .requestMatchers(PUBLIC_URL).permitAll()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .apply(customDsl()).and()
+=======
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/abc/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntrypoint))
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+>>>>>>> a3e137a (create update employee and change password)
                 .logout().logoutSuccessHandler((request, response, authentication) ->
                         response.setStatus(HttpStatus.OK.value()))
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true).
@@ -52,7 +83,10 @@ public class SecurityConfiguration {
                 .build();
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a3e137a (create update employee and change password)
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -65,6 +99,7 @@ public class SecurityConfiguration {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+<<<<<<< HEAD
     public MyCustomDsl customDsl() {
         return new MyCustomDsl();
     }
@@ -76,5 +111,7 @@ public class SecurityConfiguration {
                     .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         }
   }
+=======
+>>>>>>> a3e137a (create update employee and change password)
 
 }

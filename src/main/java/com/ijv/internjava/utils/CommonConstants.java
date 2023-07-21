@@ -16,12 +16,21 @@ public class CommonConstants {
     }
 
     public static class MessageError {
+<<<<<<< HEAD
         public static final String ERROR_AUTHENTICATE = "c";
         public static final String ER017 ="a";
     }
 
     public static class MessageSuccess {
         public static final String SC007 ="b";
+=======
+        public static final String ERROR_AUTHENTICATE = "";
+        public static final String ER017 ="";
+    }
+
+    public static class MessageSuccess {
+        public static final String SC007 ="";
+>>>>>>> a3e137a (create update employee and change password)
     }
 
     public static class Params {

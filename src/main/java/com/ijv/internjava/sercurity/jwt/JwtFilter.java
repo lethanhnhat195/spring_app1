@@ -54,6 +54,10 @@ public class JwtFilter extends OncePerRequestFilter {
                     .build();
             response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));
         }
+<<<<<<< HEAD
+=======
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+>>>>>>> a3e137a (create update employee and change password)
             UserDetails userDetails = userDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null,
