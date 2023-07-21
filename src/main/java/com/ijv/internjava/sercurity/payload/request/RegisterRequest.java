@@ -30,7 +30,6 @@ public class RegisterRequest {
     private String phone;
     private String address;
     @NotBlank(message = "not blank")
-
     private String email;
     private String image;
     private Set<String> roles;

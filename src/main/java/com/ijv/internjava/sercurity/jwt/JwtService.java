@@ -6,6 +6,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
 
 import com.ijv.internjava.utils.CommonConstants;
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.impl.crypto.DefaultJwtSignatureValidator;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
