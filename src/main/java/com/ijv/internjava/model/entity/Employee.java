@@ -1,12 +1,8 @@
 package com.ijv.internjava.model.entity;
 
 import jakarta.persistence.*;
-<<<<<<< HEAD
 import lombok.*;
-=======
-import lombok.Getter;
-import lombok.Setter;
->>>>>>> 2fb74d8 (create repository, service and controller for employee management)
+
 
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -16,7 +12,7 @@ import java.util.Set;
 @Table(name = "employees", indexes = {
         @Index(name = "work_shift_id", columnList = "work_shift_id")
 })
-<<<<<<< HEAD
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
