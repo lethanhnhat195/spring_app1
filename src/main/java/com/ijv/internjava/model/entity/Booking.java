@@ -15,14 +15,16 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "booking")
+@Entity
 public class Booking extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "CUSTOMER_NAME", nullable = false)
-    private String customerName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    private Customer customer;
 
     @Column(name = "PHONE_NUMBER", nullable = false)
     private String phoneNumber;
@@ -47,4 +49,9 @@ public class Booking extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "booking")
     private Set<BookingDetail> bookingDetail = new LinkedHashSet<>();
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> ce725da (Fix conflict on branch customer manager)

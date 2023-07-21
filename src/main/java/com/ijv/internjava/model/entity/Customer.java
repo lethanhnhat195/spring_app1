@@ -3,17 +3,28 @@ import com.ijv.internjava.model.dto.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
+<<<<<<< HEAD
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
+=======
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
+<<<<<<< HEAD
 @Entity(name = "customer")
 @Table
+=======
+@Entity
+@Table(name = "customer")
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 public class Customer extends BaseEntity {
     @Id
     @Column(name = "id", nullable = false)
@@ -31,6 +42,16 @@ public class Customer extends BaseEntity {
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
+<<<<<<< HEAD
     @Column(name = "total_money", precision = 10)
     private BigDecimal totalMoney;
+=======
+
+    @Column(name = "TOTAL_MONEY")
+    private Long totalMoney;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "customer")
+    private Set<Booking> booking = new LinkedHashSet<>();
+
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 }

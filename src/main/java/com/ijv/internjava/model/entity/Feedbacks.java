@@ -4,8 +4,11 @@ import com.ijv.internjava.model.dto.BaseEntity;
 import lombok.*;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import java.util.Date;
 
+=======
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 import java.util.LinkedHashSet;
 import java.util.Set;
 

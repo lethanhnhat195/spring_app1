@@ -5,12 +5,15 @@ import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.model.dto.CustomerDto;
 import com.ijv.internjava.service.CustomerService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import lombok.AllArgsConstructor;
+=======
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import java.util.List;
 
 =======
@@ -19,6 +22,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -77,8 +82,13 @@ public class CustomerController {
         customerService.delete(customerId);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> 0ed19f4 (Fix conflict Customer Manager)
+=======
+
+
+>>>>>>> ce725da (Fix conflict on branch customer manager)
 }
