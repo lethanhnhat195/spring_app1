@@ -11,15 +11,17 @@ import org.springframework.stereotype.Component;
 
 /**
  * The class BaseController
+ *
  * @author <a href="mailto:dongphuocan123@gmail.com">DongPhuocAn</a>
  */
+
 @Component
+
 public abstract class BaseController {
     @Autowired
     MessageUtils messageUtils;
 
     /**
-     *
      * @param msgCode
      * @param data
      * @param params
@@ -30,12 +32,10 @@ public abstract class BaseController {
         ApiResponseDto apiResponseDto = ApiResponseDto.builder().code(msgCode)
                 .message(messageUtils.getMessage(msgCode, params)).data(data)
                 .status(CommonConstants.ApiStatus.STATUS_OK).build();
-
         return new ResponseEntity<ApiResponseDto>(apiResponseDto, HttpStatus.OK);
     }
 
     /**
-     *
      * @param msgCode
      * @param params
      * @return object DTO when process failed
@@ -50,7 +50,6 @@ public abstract class BaseController {
     }
 
     /**
-     *
      * @param msgCode
      * @param data
      * @param params
@@ -61,7 +60,6 @@ public abstract class BaseController {
         ApiResponseDto apiResponseDto = ApiResponseDto.builder().code(msgCode)
                 .message(messageUtils.getMessage(msgCode, params)).data(data)
                 .status(CommonConstants.ApiStatus.STATUS_ERROR).build();
-
         return new ResponseEntity<ApiResponseDto>(apiResponseDto, HttpStatus.OK);
     }
 }

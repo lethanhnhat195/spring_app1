@@ -1,7 +1,6 @@
 package com.ijv.internjava.service.impl;
 
 
-
 import com.ijv.internjava.exception.ResourceNotFoundException;
 import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.WorkShift;
@@ -40,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee createEmployee(Employee employee) {
         Optional<Employee> employeeByEmail = employeeRepository.findEmployeeByEmail(employee.getEmail());
-        if(employeeByEmail.isPresent()) {
+        if (employeeByEmail.isPresent()) {
             throw new IllegalStateException("email taken");
         }
         return employeeRepository.save(employee);
@@ -55,27 +54,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee updateEmployee(Long id, Employee employeeDetail) {
-       Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
 
-       if (optionalEmployee.isPresent()){
-           Employee employee = optionalEmployee.get();
+        if (optionalEmployee.isPresent()) {
+            Employee employee = optionalEmployee.get();
 
-           employee.setName(employeeDetail.getName());
-           employee.setGender(employeeDetail.getGender());
-           employee.setBirthday(employeeDetail.getBirthday());
-           employee.setAddress(employeeDetail.getAddress());
-           employee.setPhone(employeeDetail.getPhone());
-           employee.setEmail(employeeDetail.getEmail());
-           employee.setUserName(employeeDetail.getUserName());
-           employee.setPassword(employeeDetail.getPassword());
-           employee.setImage(employeeDetail.getImage());
-           employee.setWorkShift(new WorkShift(employeeDetail.getId()));
+            employee.setName(employeeDetail.getName());
+            employee.setGender(employeeDetail.getGender());
+            employee.setBirthday(employeeDetail.getBirthday());
+            employee.setAddress(employeeDetail.getAddress());
+            employee.setPhone(employeeDetail.getPhone());
+            employee.setEmail(employeeDetail.getEmail());
+            employee.setUserName(employeeDetail.getUserName());
+            employee.setPassword(employeeDetail.getPassword());
+            employee.setImage(employeeDetail.getImage());
+            employee.setWorkShift(new WorkShift(employeeDetail.getId()));
 
-           Employee updateEmployee = employeeRepository.save(employee);
-           return updateEmployee;
-       }else {
-           throw new ResourceNotFoundException("Employee not exist with id : " + id);
-       }
+            Employee updateEmployee = employeeRepository.save(employee);
+            return updateEmployee;
+        } else {
+            throw new ResourceNotFoundException("Employee not exist with id : " + id);
+        }
     }
 
     @Override
@@ -97,14 +96,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public void saveEmployeesToDatabase(MultipartFile file) {
-        if(ExcelUploadService.isValueExcelFile(file)){
+        if (ExcelUploadService.isValueExcelFile(file)) {
             try {
                 List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
                 this.employeeRepository.saveAll(employees);
-            }catch (IOException e) {
+            } catch (IOException e) {
                 throw new IllegalStateException("the file is not a valid excel file");
             }
         }
     }
-
 }
