@@ -1,6 +1,5 @@
 package com.ijv.internjava.model.entity;
 import jakarta.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +13,7 @@ import lombok.Setter;
 public class UserRole {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -28,8 +27,6 @@ public class UserRole {
         this.user = user;
         this.role = role;
     }
-
     public UserRole() {
     }
-
-}
+    }

@@ -4,6 +4,7 @@ import com.ijv.internjava.model.dto.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -19,7 +20,9 @@ public class Role extends BaseEntity {
     private Long id;
 
     @Column(name = "name", nullable = false, length = 100)
-    private String name;
+    @NaturalId
+    @Enumerated(EnumType.STRING)
+    private RoleName name;
 
     @Column(name = "description", length = 500)
     private String description;

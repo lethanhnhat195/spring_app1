@@ -1,8 +1,7 @@
 package com.ijv.internjava.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
@@ -12,8 +11,10 @@ import java.util.Set;
 @Table(name = "employees", indexes = {
         @Index(name = "work_shift_id", columnList = "work_shift_id")
 })
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Employee {
     @Id
     @Column(name = "id", nullable = false)
@@ -41,8 +42,8 @@ public class Employee {
     @Column(name = "image", length = 200)
     private String image;
 
-    @Column(name = "user_name", nullable = false, length = 50)
-    private String userName;
+    @Column(name = "username", nullable = false, length = 50)
+    private String username;
 
     @Column(name = "password", nullable = false, length = 100)
     private String password;
@@ -66,10 +67,11 @@ public class Employee {
     @Column(name = "is_deleted")
     private Boolean isDeleted;
 
+
     @OneToMany(mappedBy = "employee")
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

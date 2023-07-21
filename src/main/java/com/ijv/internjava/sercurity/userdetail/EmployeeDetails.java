@@ -4,6 +4,8 @@ import com.ijv.internjava.model.entity.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Builder
 @Transactional
+@NoArgsConstructor
 public class EmployeeDetails implements UserDetails {
     private String username;
     private String password;
@@ -38,20 +41,10 @@ public class EmployeeDetails implements UserDetails {
         List<GrantedAuthority> authorities = employee.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
-
-        return new EmployeeDetails(
-                employee.getUsername(),
-                employee.getPassword(),
-                employee.getId(),
-                employee.getName(),
-                employee.getGender(),
-                employee.getBirthday(),
-                employee.getPhone(),
-                employee.getAddress(),
-                employee.getEmail(),
-                employee.getImage(),
-                authorities
-        );
+        EmployeeDetails employeeDetails = new EmployeeDetails();
+        BeanUtils.copyProperties(employee,employeeDetails);
+        employeeDetails.setRoles(authorities);
+        return employeeDetails;
     }
 
     @Override

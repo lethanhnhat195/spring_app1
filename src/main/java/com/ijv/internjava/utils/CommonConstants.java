@@ -16,11 +16,12 @@ public class CommonConstants {
     }
 
     public static class MessageError {
-
+        public static final String ERROR_AUTHENTICATE = "";
+        public static final String ER017 ="";
     }
 
     public static class MessageSuccess {
-
+        public static final String SC007 ="";
     }
 
     public static class Params {
