@@ -41,4 +41,3 @@ public abstract class BaseEntity implements Serializable {
         updatedOn = new Date();
     }
 }
-

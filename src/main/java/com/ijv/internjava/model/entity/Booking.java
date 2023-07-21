@@ -47,5 +47,4 @@ public class Booking extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "booking")
     private Set<BookingDetail> bookingDetail = new LinkedHashSet<>();
-
 }

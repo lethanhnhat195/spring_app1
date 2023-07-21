@@ -75,7 +75,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         } else {
             throw new ResourceNotFoundException("Employee not exist with id : " + id);
         }
-    }
 
     @Override
     public void deleteEmployee(Long id) {
