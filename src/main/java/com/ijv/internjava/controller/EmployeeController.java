@@ -25,25 +25,25 @@ import java.util.Map;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeService EmployeeService;
 
     //get all employees
     @GetMapping("/list")
     public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployee();
+        List<Employee> employees = EmployeeService.getAllEmployee();
         return ResponseEntity.ok(employees);
     }
     //search employee
     @GetMapping("/search")
     public ResponseEntity<List<Employee>> searchEmployees(@RequestParam("query") String query) {
-        return ResponseEntity.ok(employeeService.searchEmployees(query));
+        return ResponseEntity.ok(EmployeeService.searchEmployees(query));
     }
 
     // create employee rest api
     @PostMapping("/add")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
         try {
-            Employee createEmployee = employeeService.createEmployee(employee);
+            Employee createEmployee = EmployeeService.createEmployee(employee);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(createEmployee.getEmail()).toUri();
             return ResponseEntity.created(location).body(createEmployee);
@@ -54,14 +54,14 @@ public class EmployeeController {
     // get employee
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeService.getEmployeeById(id);
+        Employee employee = EmployeeService.getEmployeeById(id);
         return ResponseEntity.ok(employee);
     }
     //update employee rest api
     @PutMapping("update/{id}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,@RequestBody Employee employeeDetails) {
 
-        Employee updateEmployee = employeeService.updateEmployee(id, employeeDetails);
+        Employee updateEmployee = EmployeeService.updateEmployee(id, employeeDetails);
         return ResponseEntity.ok(updateEmployee);
     }
 
@@ -69,21 +69,21 @@ public class EmployeeController {
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
 
-        employeeService.deleteEmployee(id);
+        EmployeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
 
     // reset password to default
     @PutMapping("/reset_password/{id}")
     public  ResponseEntity<Employee> resetPassword(@PathVariable Long id, @RequestBody Employee employeeDetails) {
-        Employee resetEmployee = employeeService.resetPassword(id,employeeDetails);
+        Employee resetEmployee = EmployeeService.resetPassword(id,employeeDetails);
         return ResponseEntity.ok(resetEmployee);
     }
 
     //get template import file excel
     @PostMapping("/upload-file-data")
     public ResponseEntity<?> uploadEmployeesData(@RequestParam("file")MultipartFile file) {
-        employeeService.saveEmployeesToDatabase(file);
+        EmployeeService.saveEmployeesToDatabase(file);
         return ResponseEntity.ok(Map.of("Message","Employees data uploaded and saved to database successfully"));
     }
 

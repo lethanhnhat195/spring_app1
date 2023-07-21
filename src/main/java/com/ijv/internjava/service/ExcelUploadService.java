@@ -45,7 +45,7 @@ public class ExcelUploadService {
                         case 5 -> employee.setAddress(cell.getStringCellValue());
                         case 6 -> employee.setEmail(cell.getStringCellValue());
                         case 7 -> employee.setImage(cell.getStringCellValue());
-                        case 8 -> employee.setUserName(cell.getStringCellValue());
+                        case 8 -> employee.setUsername(cell.getStringCellValue());
                         case 9 -> employee.setPassword(cell.getStringCellValue());
                         case 10 -> employee.setWorkShift(new WorkShift((long) cell.getNumericCellValue()));
                         default -> {
