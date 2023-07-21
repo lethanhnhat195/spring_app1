@@ -79,14 +79,14 @@ public class EmployeeController {
     // reset password to default
     @PutMapping("/reset_password/{id}")
     public  ResponseEntity<Employee> resetPassword(@PathVariable Long id, @RequestBody Employee employeeDetails) {
-        Employee resetEmployee = employeeService.resetPassword(id,employeeDetails);
+        Employee resetEmployee = EmployeeService.resetPassword(id,employeeDetails);
         return ResponseEntity.ok(resetEmployee);
     }
 
     //get template import file excel
     @PostMapping("/upload-file-data")
     public ResponseEntity<?> uploadEmployeesData(@RequestParam("file")MultipartFile file) {
-        employeeService.saveEmployeesToDatabase(file);
+        EmployeeService.saveEmployeesToDatabase(file);
         return ResponseEntity.ok(Map.of("Message","Employees data uploaded and saved to database successfully"));
     }
 

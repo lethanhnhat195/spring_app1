@@ -28,15 +28,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ijv.internjava.repository.IRoleRepository;
-import com.ijv.internjava.repository.UserRoleRepository;
-import com.ijv.internjava.sercurity.config.CustomAuthenticationFilter;
-import com.ijv.internjava.sercurity.jwt.JwtService;
-import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.request.PasswordUpdateRequest;
 import com.ijv.internjava.sercurity.payload.request.RegisterRequest;
-import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
-import com.ijv.internjava.sercurity.payload.response.EmployeeResponse;
-import com.ijv.internjava.service.IEmployeeService;
+import com.ijv.internjava.service.EmployeeService;
 import com.ijv.internjava.utils.CommonConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -52,7 +46,6 @@ import org.springframework.validation.BindingResult;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
