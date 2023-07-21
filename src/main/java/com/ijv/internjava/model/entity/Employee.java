@@ -45,11 +45,8 @@ public class Employee {
     private String image;
 
     @Column(name = "username", nullable = false, length = 50)
-=======
 
     @Column(name = "user_name", nullable = false, length = 50)
->>>>>>> 56d4993 (fix conflict from main branch)
->>>>>>> b3c47dc (update dependency maven)
     private String username;
 
     @Column(name = "password", nullable = false, length = 100)
