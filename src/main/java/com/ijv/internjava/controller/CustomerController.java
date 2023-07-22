@@ -1,29 +1,22 @@
 package com.ijv.internjava.controller;
 
-
 import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.model.dto.CustomerDto;
 import com.ijv.internjava.service.CustomerService;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import lombok.AllArgsConstructor;
-=======
->>>>>>> ce725da (Fix conflict on branch customer manager)
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-<<<<<<< HEAD
+
 import java.util.List;
-
-=======
+import com.ijv.internjava.model.dto.ApiResponseDto;
+import com.ijv.internjava.model.dto.CustomerDto;
+import com.ijv.internjava.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
-=======
->>>>>>> ce725da (Fix conflict on branch customer manager)
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -35,10 +28,10 @@ public class CustomerController {
     @GetMapping
     public ResponseEntity<ApiResponseDto> findAll() {
         return ResponseEntity.ok().body(ApiResponseDto.builder()
-                        .code("customerService.findAll()")
-                        .message("Get all customer")
-                        .data(customerService.findAll())
-                        .status("HttpStatus.CREATED")
+                .code("customerService.findAll()")
+                .message("Get all customer")
+                .data(customerService.findAll())
+                .status("HttpStatus.CREATED")
                 .build());
     }
 
@@ -46,10 +39,10 @@ public class CustomerController {
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponseDto> detail(@PathVariable(name = "id") Long id) {
         return ResponseEntity.ok().body(ApiResponseDto.builder()
-                        .code("customerService.detail(id)")
-                        .message("Get customer detail by id")
-                        .data(customerService.detail(id))
-                        .status("HttpStatus.CREATED")
+                .code("customerService.detail(id)")
+                .message("Get customer detail by id")
+                .data(customerService.detail(id))
+                .status("HttpStatus.CREATED")
                 .build());
     }
 
@@ -57,10 +50,10 @@ public class CustomerController {
     @PostMapping("/add")
     public ResponseEntity<ApiResponseDto> add(@RequestBody CustomerDto customerDto) {
         return ResponseEntity.ok().body(ApiResponseDto.builder()
-                        .code("HttpStatus.CREATED")
-                        .message("Add new customer")
-                        .data(customerService.add(customerDto))
-                        .status("HttpStatus.CREATED")
+                .code("HttpStatus.CREATED")
+                .message("Add new customer")
+                .data(customerService.add(customerDto))
+                .status("HttpStatus.CREATED")
                 .build());
     }
 
@@ -69,10 +62,10 @@ public class CustomerController {
     public ResponseEntity<ApiResponseDto> update(@PathVariable("id") long customerId, @RequestBody CustomerDto customerDto) {
 
         return ResponseEntity.ok().body(ApiResponseDto.builder()
-                        .code("")
-                        .message("Update customer")
-                        .data(customerService.update(customerId,customerDto))
-                        .status("HttpStatus.CREATED")
+                .code("")
+                .message("Update customer")
+                .data(customerService.update(customerId,customerDto))
+                .status("HttpStatus.CREATED")
                 .build());
     }
 
@@ -81,14 +74,4 @@ public class CustomerController {
     public void delete(@PathVariable(name = "id") long customerId) {
         customerService.delete(customerId);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
-=======
-
-
->>>>>>> ce725da (Fix conflict on branch customer manager)
 }

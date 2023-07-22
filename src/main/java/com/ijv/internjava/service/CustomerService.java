@@ -10,13 +10,4 @@ public interface CustomerService {
     CustomerDto add(CustomerDto customerDto);
     CustomerDto update(long id, CustomerDto customerDto);
      void delete(long id);
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 0ed19f4 (Fix conflict Customer Manager)
-=======
-
->>>>>>> ce725da (Fix conflict on branch customer manager)
 }
