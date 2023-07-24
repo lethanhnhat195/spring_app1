@@ -3,9 +3,6 @@ package com.ijv.internjava.sercurity.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.ijv.internjava.model.dto.ApiResponseDto;
-import com.ijv.internjava.model.entity.Employee;
-import com.ijv.internjava.model.entity.Employee;
-import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.sercurity.jwt.JwtService;
 import com.ijv.internjava.sercurity.payload.request.AuthenticationRequest;
 import com.ijv.internjava.sercurity.payload.response.AuthenticationResponse;
@@ -14,10 +11,6 @@ import com.ijv.internjava.sercurity.userdetail.EmployeeDetails;
 import com.ijv.internjava.utils.CommonConstants;
 import com.ijv.internjava.utils.MessageUtils;
 import jakarta.servlet.FilterChain;
-import com.ijv.internjava.utils.CommonConstants;
-import com.ijv.internjava.utils.MessageUtils;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,26 +18,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ijv.internjava.service.IEmployeeService;
-import com.ijv.internjava.utils.CommonConstants;
-import com.ijv.internjava.utils.MessageUtils;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -58,7 +37,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Autowired
     private MessageUtils messageUtils;
     ObjectMapper objectMapper;
-    @Autowired
     private JwtService jwtService;
 
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -80,15 +58,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            String username;
-            String password;
-            AuthenticationRequest authenticationRequest;
-            String username = null;
-            String password = null;
-            AuthenticationRequest authenticationRequest = null;
-            String username;
-            String password;
-            AuthenticationRequest authenticationRequest;
             String username = null;
             String password = null;
             AuthenticationRequest authenticationRequest = null;
@@ -101,16 +70,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             }
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
             Authentication auth = authenticationManager.authenticate(authToken);
-            return auth;
-            String currentUsername = username;
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-            return authenticationManager.authenticate(authToken);
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-            Authentication auth = authenticationManager.authenticate(authToken);
-            return auth;
-            String currentUsername = username;
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
-            return authenticationManager.authenticate(authToken);
+            return authenticationManager.authenticate(auth);
         }
 
         @Override
@@ -121,9 +81,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             EmployeeResponse employeeResponse = new EmployeeResponse();
             BeanUtils.copyProperties(authResult.getPrincipal(), employeeResponse);
             AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
-            String token = jwtService.generateAccessToken(request, (EmployeeDetails) authResult.getPrincipal());
-            EmployeeResponse employeeResponse = new EmployeeResponse();
-            Employee employee = employeeService.findByUsername(jwtService.getUsernameFromToke(token)).get();
+            Employees employee = employeeService.findByUsername(jwtService.getUsernameFromToke(token)).get();
             BeanUtils.copyProperties(employee, employeeResponse);
             AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                     .token(token)
@@ -134,9 +92,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                     .message(null).data(authenticationResponse)
                     .message(messageUtils.getMessage(CommonConstants.MessageSuccess.SC007, null)).data(authenticationResponse)
                     .message(null).data(authenticationResponse)
-                    .message(null).data(authenticationResponse)
-                    .message(messageUtils.getMessage(CommonConstants.MessageSuccess.SC007, null)).data(authenticationResponse)
-                    .message(messageUtils.getMessage(CommonConstants.MessageSuccess.SC007, null)).data(authenticationResponse)
                     .status(CommonConstants.ApiStatus.STATUS_OK).build();
             try {
                 response.getWriter().write(objectMapper.writeValueAsString(apiResponseDto));

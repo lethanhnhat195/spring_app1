@@ -1,6 +1,5 @@
 package com.ijv.internjava.service;
 
-import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.WorkShift;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -45,15 +44,7 @@ public class ExcelUploadService {
                         case 5 -> employee.setAddress(cell.getStringCellValue());
                         case 6 -> employee.setEmail(cell.getStringCellValue());
                         case 7 -> employee.setImage(cell.getStringCellValue());
-<<<<<<< HEAD
-<<<<<<< HEAD
                         case 8 -> employee.setUsername(cell.getStringCellValue());
-=======
-                        case 8 -> employee.setUserName(cell.getStringCellValue());
->>>>>>> ef330c5 (create repository, service, and controller for workshift management)
-=======
-                        case 8 -> employee.setUsername(cell.getStringCellValue());
->>>>>>> 56d4993 (fix conflict from main branch)
                         case 9 -> employee.setPassword(cell.getStringCellValue());
                         case 10 -> employee.setWorkShift(new WorkShift((long) cell.getNumericCellValue()));
                         default -> {

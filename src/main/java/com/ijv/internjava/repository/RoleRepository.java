@@ -1,6 +1,5 @@
 package com.ijv.internjava.repository;
 
-import com.ijv.internjava.model.entity.Role;
 import com.ijv.internjava.model.entity.RoleName;
 import org.springframework.data.jpa.repository.JpaRepository;
 

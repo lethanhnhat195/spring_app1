@@ -1,18 +1,11 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-
-<<<<<<< HEAD
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-=======
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
->>>>>>> ce725da (Fix conflict on branch customer manager)
 
 
-@Entity
 @Table(name = "BOOKING_DETAIL", indexes = {
         @Index(name = "BOOKING_ID", columnList = "BOOKING_ID"),
         @Index(name = "SERVICE_ID", columnList = "SERVICE_ID")
@@ -20,8 +13,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "booking_detail")
 @Entity
 public class BookingDetail extends BaseEntity {
     @Id
@@ -39,10 +30,4 @@ public class BookingDetail extends BaseEntity {
 
     @Column(name = "NOTE", length = 500)
     private String note;
-<<<<<<< HEAD
 }
-=======
-
-
-}
->>>>>>> ce725da (Fix conflict on branch customer manager)

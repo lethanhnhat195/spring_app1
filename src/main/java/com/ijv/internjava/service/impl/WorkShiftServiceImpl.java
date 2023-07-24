@@ -2,7 +2,6 @@ package com.ijv.internjava.service.impl;
 
 import com.ijv.internjava.exception.ResourceNotFoundException;
 
-import com.ijv.internjava.model.entity.Employee;
 import com.ijv.internjava.model.entity.WorkShift;
 import com.ijv.internjava.repository.WorkShiftRepository;
 import com.ijv.internjava.service.EmployeeService;

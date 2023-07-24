@@ -1,8 +1,8 @@
 package com.ijv.internjava.model.entity;
 import com.ijv.internjava.model.dto.BaseEntity;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 
 import java.util.Date;
@@ -10,8 +10,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 
-@Entity
-@Table(name = "BOOKING")
 
 @Getter
 @Setter

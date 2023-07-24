@@ -4,7 +4,6 @@ import com.ijv.internjava.mapper.ServiceImageMapper;
 import com.ijv.internjava.mapper.ServiceMapper;
 import com.ijv.internjava.model.dto.ServiceDto;
 import com.ijv.internjava.model.dto.ServiceImageDto;
-import com.ijv.internjava.model.entity.Service;
 import com.ijv.internjava.model.entity.ServicesImage;
 import com.ijv.internjava.repository.ServiceImageRepository;
 import com.ijv.internjava.repository.ServiceRepository;

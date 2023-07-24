@@ -1,7 +1,7 @@
 package com.ijv.internjava.mapper;
 
 import com.ijv.internjava.model.dto.ServiceDto;
-import com.ijv.internjava.model.entity.Service;
+import com.ijv.internjava.model.entity.Services;
 
 import java.util.stream.Collectors;
 
@@ -15,8 +15,8 @@ public class ServiceMapper {
         return INSTANCE;
     }
 
-    public Service toEntity(ServiceDto serviceDto) {
-        Service service = new Service();
+    public Services toEntity(ServiceDto serviceDto) {
+        Services service = new Services();
         service.setId(serviceDto.getId());
         service.setName(serviceDto.getName());
         service.setServiceTime(serviceDto.getServiceTime());
@@ -28,7 +28,7 @@ public class ServiceMapper {
         return service;
     }
 
-    public ServiceDto toDto(Service service) {
+    public ServiceDto toDto(Services service) {
         ServiceDto serviceDto = new ServiceDto();
         serviceDto.setId(service.getId());
         serviceDto.setName(service.getName());

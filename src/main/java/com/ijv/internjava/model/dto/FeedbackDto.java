@@ -1,6 +1,5 @@
 package com.ijv.internjava.model.dto;
 
-import com.ijv.internjava.model.entity.Services;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ public class FeedbackDto implements Serializable {
     private Long id;
     private String name;
     private String email;
-    private Integer serviceId;
+    private Long serviceId;
     private String title;
     private String content;
     private Integer replyId;

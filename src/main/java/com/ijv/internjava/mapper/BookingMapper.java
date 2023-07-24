@@ -24,7 +24,7 @@ public class BookingMapper {
         booking.setToTime(bookingDto.getToTime());
         booking.setNote(bookingDto.getNote());
         booking.setStatus(bookingDto.getStatus());
-        booking.setBookingDetails(bookingDto.getBookingDetailDtos().stream()
+        booking.setBookingDetail(bookingDto.getBookingDetailDtos().stream()
                 .map(bookingDetailDto -> BookingDetailMapper.getInstance().toEntity(bookingDetailDto))
                 .collect(Collectors.toSet()));
         return booking;
@@ -40,7 +40,7 @@ public class BookingMapper {
         bookingDto.setToTime(booking.getToTime());
         bookingDto.setNote(booking.getNote());
         bookingDto.setStatus(booking.getStatus());
-        bookingDto.setBookingDetailDtos(booking.getBookingDetails().stream()
+        bookingDto.setBookingDetailDtos(booking.getBookingDetail().stream()
                 .map(bookingDetail -> BookingDetailMapper.getInstance().toDto(bookingDetail))
                 .collect(Collectors.toSet()));
         return bookingDto;

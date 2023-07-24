@@ -1,8 +1,8 @@
 package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "EMPLOYEE_SERVICE", indexes = {
@@ -11,14 +11,9 @@ import lombok.Setter;
 })
 @Getter
 @Setter
-<<<<<<< HEAD
-=======
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-@Table(name = "employee_service")
-@Entity
->>>>>>> ce725da (Fix conflict on branch customer manager)
 public class EmployeeService extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)

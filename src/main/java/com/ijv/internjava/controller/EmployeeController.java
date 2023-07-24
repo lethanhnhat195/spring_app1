@@ -2,7 +2,7 @@ package com.ijv.internjava.controller;
 
 
 
-import com.ijv.internjava.model.entity.Employee;
+import com.ijv.internjava.model.entity.Employees;
 import com.ijv.internjava.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,29 +25,25 @@ import java.util.Map;
 public class EmployeeController {
 
     @Autowired
-    private EmployeeService EmployeeService;
     private EmployeeService employeeService;
 
     //get all employees
     @GetMapping("/list")
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = EmployeeService.getAllEmployee();
-        List<Employee> employees = employeeService.getAllEmployee();
-        List<Employee> employees = EmployeeService.getAllEmployee();
+    public ResponseEntity<List<Employees>> getAllEmployees() {
+        List<Employees> employees = employeeService.getAllEmployee();
         return ResponseEntity.ok(employees);
     }
     //search employee
     @GetMapping("/search")
-    public ResponseEntity<List<Employee>> searchEmployees(@RequestParam("query") String query) {
-        return ResponseEntity.ok(EmployeeService.searchEmployees(query));
+    public ResponseEntity<List<Employees>> searchEmployees(@RequestParam("query") String query) {
         return ResponseEntity.ok(employeeService.searchEmployees(query));
     }
 
     // create employee rest api
     @PostMapping("/add")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employees> createEmployee(@RequestBody Employees employee) {
         try {
-            Employee createEmployee = employeeService.createEmployee(employee);
+            Employees createEmployee = employeeService.createEmployee(employee);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                     .buildAndExpand(createEmployee.getEmail()).toUri();
             return ResponseEntity.created(location).body(createEmployee);
@@ -57,15 +53,15 @@ public class EmployeeController {
     }
     // get employee
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = EmployeeService.getEmployeeById(id);
+    public ResponseEntity<Employees> getEmployeeById(@PathVariable Long id) {
+        Employees employee = EmployeeService.getEmployeeById(id);
         return ResponseEntity.ok(employee);
     }
     //update employee rest api
     @PutMapping("update/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,@RequestBody Employee employeeDetails) {
+    public ResponseEntity<Employees> updateEmployee(@PathVariable Long id,@RequestBody Employees employeeDetails) {
 
-        Employee updateEmployee = EmployeeService.updateEmployee(id, employeeDetails);
+        Employees updateEmployee = EmployeeService.updateEmployee(id, employeeDetails);
         return ResponseEntity.ok(updateEmployee);
     }
 
@@ -78,8 +74,8 @@ public class EmployeeController {
 
     // reset password to default
     @PutMapping("/reset_password/{id}")
-    public  ResponseEntity<Employee> resetPassword(@PathVariable Long id, @RequestBody Employee employeeDetails) {
-        Employee resetEmployee = EmployeeService.resetPassword(id,employeeDetails);
+    public  ResponseEntity<Employees> resetPassword(@PathVariable Long id, @RequestBody Employees employeeDetails) {
+        Employees resetEmployee = EmployeeService.resetPassword(id,employeeDetails);
         return ResponseEntity.ok(resetEmployee);
     }
 

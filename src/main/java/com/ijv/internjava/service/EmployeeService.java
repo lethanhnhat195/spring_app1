@@ -1,6 +1,6 @@
 package com.ijv.internjava.service;
 
-import com.ijv.internjava.model.entity.Employee;
+import com.ijv.internjava.model.entity.Employees;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -9,25 +9,25 @@ import java.util.Optional;
 
 
 public interface EmployeeService {
-    List<Employee> getAllEmployee();
-    List<Employee> searchEmployees(String query);
+    List<Employees> getAllEmployee();
+    List<Employees> searchEmployees(String query);
 
-    Employee createEmployee(Employee employee);
+    Employees createEmployee(Employees employee);
 
-    Employee getEmployeeById(Long id);
+    Employees getEmployeeById(Long id);
 
-    Employee updateEmployee(Long id, Employee employeeDetail);
+    Employees updateEmployee(Long id, Employees employeeDetail);
 
     void deleteEmployee(Long id);
 
-    Employee resetPassword(Long id, Employee employeeDetail);
+    Employees resetPassword(Long id, Employees employeeDetail);
 
     void saveEmployeesToDatabase(MultipartFile file);
-    Optional<Employee> findByUsername(String username);
+    Optional<Employees> findByUsername(String username);
 
     boolean existsByEmail(String email);
 
-    Optional<Employee> findByUsername(String username);
+    Optional<Employees> findByUsername(String username);
 
     boolean existsByEmail(String email);
 
@@ -35,6 +35,6 @@ public interface EmployeeService {
 
     boolean existsByPhone(String phone);
 
-    void save(Employee employee);
+    void save(Employees employee);
 
 }

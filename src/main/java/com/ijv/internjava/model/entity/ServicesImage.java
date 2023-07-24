@@ -2,14 +2,12 @@ package com.ijv.internjava.model.entity;
 
 import com.ijv.internjava.model.dto.BaseEntity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 
 import jakarta.persistence.*;
 
 
-@Entity
 @Table(name = "SERVICES_IMAGE", indexes = {
         @Index(name = "SERVICE_ID", columnList = "SERVICE_ID")
 })
@@ -19,7 +17,6 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
-@Table(name = "services_image")
 @Entity
 public class ServicesImage extends BaseEntity {
 
@@ -36,5 +33,4 @@ public class ServicesImage extends BaseEntity {
     @Column(name = "NAME_FILE", nullable = false, length = 256)
 
     private String nameFile;
-
 }

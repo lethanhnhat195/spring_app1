@@ -6,13 +6,7 @@ import org.springframework.validation.Validator;
 
 @Data
 public class PasswordUpdateRequest implements Validator {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     private String username;
->>>>>>> d395b7d (create config sercurity and jwt to sign-in and sign-up)
-=======
->>>>>>> 8e1a155 (update authentication and authorization)
     private String newPassword;
     private String confirmPassword;
 

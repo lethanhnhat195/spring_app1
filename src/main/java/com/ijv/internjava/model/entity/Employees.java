@@ -15,11 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(onlyExplicitlyIncluded = true)
 @Table(name = "employees")
-<<<<<<< HEAD
-
-=======
 @Entity
->>>>>>> ce725da (Fix conflict on branch customer manager)
 public class Employees extends BaseEntity {
     @Id
     @Column(name = "ID", nullable = false)
