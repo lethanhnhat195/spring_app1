@@ -1,13 +1,12 @@
 package com.ijv.internjava.service.impl;
 
+
 import com.ijv.internjava.exception.ResourceNotFoundException;
-import com.ijv.internjava.model.entity.Employee;
+import com.ijv.internjava.model.entity.Employees;
 import com.ijv.internjava.model.entity.WorkShift;
 import com.ijv.internjava.repository.EmployeeRepository;
-
-import com.ijv.internjava.service.ExcelUploadService;
-
 import com.ijv.internjava.service.EmployeeService;
+import com.ijv.internjava.service.ExcelUploadService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,112 +20,87 @@ import java.util.Optional;
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeRepository EmployeeRepository;
+    private EmployeeRepository employeeRepository;
 
     @Override
-    public List<Employee> getAllEmployee() {
-        List<Employee> employees = EmployeeRepository.findAll();
+    public List<Employees> getAllEmployee() {
+        List<Employees> employees = employeeRepository.findAll();
         return employees;
     }
 
     @Override
-    public List<Employee> searchEmployees(String query) {
-        List<Employee> employees = EmployeeRepository.searchEmployees(query);
+    public List<Employees> searchEmployees(String query) {
+        List<Employees> employees = employeeRepository.searchEmployees(query);
         return employees;
     }
 
     @Override
-    public Employee createEmployee(Employee employee) {
-        Optional<Employee> employeeByEmail = EmployeeRepository.findEmployeeByEmail(employee.getEmail());
+    public Employees createEmployee(Employees employee) {
+        Optional<Employees> employeeByEmail = employeeRepository.findEmployeeByEmail(employee.getEmail());
         if(employeeByEmail.isPresent()) {
             throw new IllegalStateException("email taken");
         }
-        return EmployeeRepository.save(employee);
+        return employeeRepository.save(employee);
     }
 
     @Override
-    public Employee getEmployeeById(Long id) {
-        Employee employee = EmployeeRepository.findById(id).orElseThrow(() ->
+    public Employees getEmployeeById(Long id) {
+        Employees employee = employeeRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Employee not exist with id : " + id));
         return employee;
     }
 
     @Override
-    public Employee updateEmployee(Long id, Employee employeeDetail) {
-       Optional<Employee> optionalEmployee = EmployeeRepository.findById(id);
+    public Employees updateEmployee(Long id, Employees employeeDetail) {
+        Optional<Employees> optionalEmployee = employeeRepository.findById(id);
 
-       if (optionalEmployee.isPresent()){
-           Employee employee = optionalEmployee.get();
+        if (optionalEmployee.isPresent()){
+            Employees employee = optionalEmployee.get();
 
-           employee.setName(employeeDetail.getName());
-           employee.setGender(employeeDetail.getGender());
-           employee.setBirthday(employeeDetail.getBirthday());
-           employee.setAddress(employeeDetail.getAddress());
-           employee.setPhone(employeeDetail.getPhone());
-           employee.setEmail(employeeDetail.getEmail());
-           employee.setUsername(employeeDetail.getUsername());
-           employee.setPassword(employeeDetail.getPassword());
-           employee.setImage(employeeDetail.getImage());
-           employee.setWorkShift(new WorkShift(employeeDetail.getId()));
+            employee.setName(employeeDetail.getName());
+            employee.setGender(employeeDetail.getGender());
+            employee.setBirthday(employeeDetail.getBirthday());
+            employee.setAddress(employeeDetail.getAddress());
+            employee.setPhone(employeeDetail.getPhone());
+            employee.setEmail(employeeDetail.getEmail());
+            employee.setUserName(employeeDetail.getUserName());
+            employee.setPassword(employeeDetail.getPassword());
+            employee.setImage(employeeDetail.getImage());
+            employee.setWorkShiftId(new WorkShift(employeeDetail.getId()));
 
-           Employee updateEmployee = EmployeeRepository.save(employee);
-           return updateEmployee;
-       }else {
-           throw new ResourceNotFoundException("Employee not exist with id : " + id);
-       }
+            Employees updateEmployee = employeeRepository.save(employee);
+            return updateEmployee;
+        }else {
+            throw new ResourceNotFoundException("Employee not exist with id : " + id);
+        }
     }
 
     @Override
     public void deleteEmployee(Long id) {
-        EmployeeRepository.findById(id).orElseThrow(() ->
+        employeeRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Employee not exist with id : " + id));
-        EmployeeRepository.deleteById(id);
+        employeeRepository.deleteById(id);
     }
 
     @Override
-    public Employee resetPassword(Long id, Employee employeeDetail) {
+    public Employees resetPassword(Long id, Employees employeeDetail) {
         final String passwordDefault = "A123456@";
-        Employee employee = EmployeeRepository.findById(id).orElseThrow(() ->
+        Employees employee = employeeRepository.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Employee not exist with id : " + id));
 
         employee.setPassword("passwordDefault");
-        Employee resetEmployee = EmployeeRepository.save(employee);
+        Employees resetEmployee = employeeRepository.save(employee);
         return resetEmployee;
     }
 
     public void saveEmployeesToDatabase(MultipartFile file) {
         if(ExcelUploadService.isValueExcelFile(file)){
             try {
-                List<Employee> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
-                this.EmployeeRepository.saveAll(employees);
+                List<Employees> employees = ExcelUploadService.getEmployeeDataFromExcel(file.getInputStream());
+                this.employeeRepository.saveAll(employees);
             }catch (IOException e) {
                 throw new IllegalStateException("the file is not a valid excel file");
             }
         }
-    }
-  
-    @Override
-    public Optional<Employee> findByUsername(String username) {
-        return EmployeeRepository.findByUsername(username);
-    }
-
-    @Override
-    public boolean existsByEmail(String email) {
-        return EmployeeRepository.existsByEmail(email);
-    }
-
-    @Override
-    public boolean existsByUsername(String username) {
-        return EmployeeRepository.existsByUsername(username);
-    }
-
-    @Override
-    public boolean existsByPhone(String phone) {
-        return EmployeeRepository.existsByPhone(phone);
-    }
-
-    @Override
-    public void save(Employee employee) {
-        EmployeeRepository.save(employee);
     }
 }

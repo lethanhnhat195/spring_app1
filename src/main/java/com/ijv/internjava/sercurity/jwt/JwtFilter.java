@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ijv.internjava.model.dto.ApiResponseDto;
 import com.ijv.internjava.sercurity.config.SecurityConfiguration;
 import com.ijv.internjava.utils.CommonConstants;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,8 +39,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-             HttpServletRequest request,
-             HttpServletResponse response,
+            HttpServletRequest request,
+            HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
         if(!isPublicUrl(request.getServletPath())){
         final String authHeader = request.getHeader("Authentication");

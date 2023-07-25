@@ -1,36 +1,50 @@
 package com.ijv.internjava.model.entity;
-
 import com.ijv.internjava.model.dto.BaseEntity;
+
 import jakarta.persistence.*;
+import lombok.*;
+
+
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
-import java.util.Date;
 
-@Entity
-@Table(name = "customer")
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
+@Entity
+@Table(name = "customer")
 public class Customer extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_name", nullable = false, length = 100)
+    @Column(name = "CUSTOMER_NAME", nullable = false, length = 100)
     private String customerName;
 
-    @Column(name = "phone_number", nullable = false, length = 10)
+    @Column(name = "PHONE_NUMBER", nullable = false, length = 10)
     private String phoneNumber;
 
-    @Column(name = "address", length = 500)
+    @Column(name = "ADDRESS", length = 500)
     private String address;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "DATE_OF_BIRTH")
     private Date dateOfBirth;
 
-    @Column(name = "total_money", precision = 10)
+
+    @Column(name = "TOTAL_MONEY", precision = 10)
     private BigDecimal totalMoney;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Booking> bookings = new LinkedHashSet<>();
 
 }

@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -20,6 +21,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Collections;
 import java.util.List;
+
+import com.ijv.internjava.sercurity.jwt.JwtEntrypoint;
 
 @Configuration
 @EnableWebSecurity
@@ -69,6 +72,9 @@ public class SecurityConfiguration {
             httpSecurity.addFilter(new CustomAuthenticationFilter(authenticationManager))
                     .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         }
-  }
 
+        public MyCustomDsl customDsl() {
+            return new MyCustomDsl();
+        }
+    }
 }

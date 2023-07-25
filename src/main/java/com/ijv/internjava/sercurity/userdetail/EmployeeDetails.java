@@ -1,6 +1,5 @@
 package com.ijv.internjava.sercurity.userdetail;
 
-import com.ijv.internjava.model.entity.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,6 +44,20 @@ public class EmployeeDetails implements UserDetails {
         BeanUtils.copyProperties(employee,employeeDetails);
         employeeDetails.setRoles(authorities);
         return employeeDetails;
+
+        return new EmployeeDetails(
+                employee.getUsername(),
+                employee.getPassword(),
+                employee.getId(),
+                employee.getName(),
+                employee.getGender(),
+                employee.getBirthday(),
+                employee.getPhone(),
+                employee.getAddress(),
+                employee.getEmail(),
+                employee.getImage(),
+                authorities
+        );
     }
 
     @Override

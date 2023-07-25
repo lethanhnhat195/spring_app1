@@ -1,37 +1,31 @@
 package com.ijv.internjava.model.entity;
 
-import com.ijv.internjava.model.dto.BaseEntity;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
+import lombok.*;
 
 @Entity
-@Table(name = "user_role", indexes = {
-        @Index(name = "role_id", columnList = "role_id"),
-        @Index(name = "user_id", columnList = "user_id")
+@Table(name = "USER_ROLE", indexes = {
+        @Index(name = "ROLE_ID", columnList = "ROLE_ID"),
+        @Index(name = "USER_ID", columnList = "USER_ID")
 })
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(onlyExplicitlyIncluded = true)
 public class UserRole {
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private Employees user;
+
+    @ManyToOne(targetEntity=Roles.class,fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ROLE_ID", nullable = false)
+    private Roles role;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Employee user;
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
-    public UserRole(Employee user, Role role) {
-        this.user = user;
-        this.role = role;
-    }
-
-    public UserRole() {
-    }
-
 }
+

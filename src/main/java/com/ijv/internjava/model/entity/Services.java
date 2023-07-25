@@ -10,25 +10,25 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "services")
+@Table(name = "SERVICES")
 @Getter
 @Setter
-public class Service extends BaseEntity {
+public class Services extends BaseEntity {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "service_time", nullable = false)
+    @Column(name = "SERVICE_TIME", nullable = false)
     private Integer serviceTime;
 
-    @Column(name = "price", nullable = false, precision = 10)
+    @Column(name = "PRICE", nullable = false, precision = 10)
     private BigDecimal price;
 
-    @Column(name = "description", length = 500)
+    @Column(name = "DESCRIPTION", length = 500)
     private String description;
 
     @OneToMany(mappedBy = "service")
