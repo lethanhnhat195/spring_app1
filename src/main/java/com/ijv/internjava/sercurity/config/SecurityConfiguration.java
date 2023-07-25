@@ -4,17 +4,12 @@ import com.ijv.internjava.sercurity.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -31,27 +26,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-    private final AuthenticationProvider authenticationProvider;
     private final JwtFilter jwtFilter;
-    private final String[] PUBLIC_URL = {"/login","/api/auth/**"};
+    private final String[] PUBLIC_URL = {"/api/auth/**","/swagger-ui/**","/login","/logout","/v3/**"};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors().configurationSource(corsConfigurationSource()).and()
+                .cors(httpSecurityCorsConfigurer -> corsConfigurationSource())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PUBLIC_URL).permitAll()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .apply(customDsl()).and()
-                .logout().logoutSuccessHandler((request, response, authentication) ->
-                        response.setStatus(HttpStatus.OK.value()))
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true).
-                and()
+                .apply(customDsl()).disable()
+                .logout(httpSecurityLogoutConfigurer ->
+                        httpSecurityLogoutConfigurer.logoutSuccessHandler(
+                                (request, response, authentication) -> response.setStatus(HttpStatus.OK.value()))
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", HttpMethod.GET.toString()))
+                                .clearAuthentication(true).deleteCookies())
                 .build();
     }
-
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
@@ -70,7 +64,7 @@ public class SecurityConfiguration {
     }
   public  class MyCustomDsl extends  AbstractHttpConfigurer<MyCustomDsl , HttpSecurity>{
         @Override
-      public void configure(HttpSecurity httpSecurity) throws Exception{
+      public void configure(HttpSecurity httpSecurity) {
             AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
             httpSecurity.addFilter(new CustomAuthenticationFilter(authenticationManager))
                     .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
