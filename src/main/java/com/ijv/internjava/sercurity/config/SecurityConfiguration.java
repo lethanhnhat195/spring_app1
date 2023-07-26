@@ -4,15 +4,12 @@ import com.ijv.internjava.sercurity.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.SecurityFilterChain;
@@ -32,74 +29,52 @@ import com.ijv.internjava.sercurity.jwt.JwtEntrypoint;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
-    private final AuthenticationProvider authenticationProvider;
     private final JwtFilter jwtFilter;
-    private final String[] PUBLIC_URL = {"/login", "/api/auth/**"};
-    private final JwtEntrypoint jwtEntrypoint;
-    private final String[] PUBLIC_URL = {"/login", "/api/auth/**"};
-    private final String[] PUBLIC_URL = {"/login", "/api/auth/**"};
-    private final JwtEntrypoint jwtEntrypoint;
+    private final String[] PUBLIC_URL = {"/api/auth/**","/swagger-ui/**","/login","/logout","/v3/**"};
 
-    public class SecurityConfiguration {
-        private final AuthenticationProvider authenticationProvider;
-        private final JwtFilter jwtFilter;
-        private final JwtEntrypoint jwtEntrypoint;)
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(httpSecurityCorsConfigurer -> corsConfigurationSource())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(PUBLIC_URL).permitAll()
+                )
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .apply(customDsl()).disable()
+                .logout(httpSecurityLogoutConfigurer ->
+                        httpSecurityLogoutConfigurer.logoutSuccessHandler(
+                                (request, response, authentication) -> response.setStatus(HttpStatus.OK.value()))
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", HttpMethod.GET.toString()))
+                                .clearAuthentication(true).deleteCookies())
+                .build();
+    }
 
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-            return httpSecurity
-                    .csrf(AbstractHttpConfigurer::disable)
-                    .cors().configurationSource(corsConfigurationSource()).and()
-                    .authorizeHttpRequests(auth -> auth
-                            .requestMatchers(PUBLIC_URL).permitAll()
-                    )
-                    .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                    .apply(customDsl()).and()
-                    .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers("/abc/**").hasRole("ADMIN")
-                    .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/api/auth/**").permitAll()
-                            .cors().configurationSource(corsConfigurationSource()).and()
-                            .authorizeHttpRequests(auth -> auth
-                                    .requestMatchers("/api/auth/**").permitAll()
-                                    .requestMatchers("/abc/**").hasRole("ADMIN")
-                                    .anyRequest().authenticated()
-                            )
-                            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                            .authenticationProvider(authenticationProvider)
-                            .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntrypoint))
-                            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                            .logout().logoutSuccessHandler((request, response, authentication) ->
-                                    response.setStatus(HttpStatus.OK.value()))
-                            .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).clearAuthentication(true).
-                            and()
-                            .build();
-        }
-
-        @Bean
-        CorsConfigurationSource corsConfigurationSource() {
-            CorsConfiguration configuration = new CorsConfiguration();
-            List<String> allowOrigins = configuration.getAllowedOrigins();
-            configuration.setAllowedOriginPatterns(allowOrigins);
-            configuration.setAllowedMethods(Collections.singletonList("*"));
-            configuration.setAllowedHeaders(Collections.singletonList("*"));
-            configuration.setAllowCredentials(true);
-            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-            source.registerCorsConfiguration("/**", configuration);
-            return source;
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        List<String> allowOrigins = configuration.getAllowedOrigins();
+        configuration.setAllowedOriginPatterns(allowOrigins);
+        configuration.setAllowedMethods(Collections.singletonList("*"));
+        configuration.setAllowedHeaders(Collections.singletonList("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+    public MyCustomDsl customDsl() {
+        return new MyCustomDsl();
+    }
+  public  class MyCustomDsl extends  AbstractHttpConfigurer<MyCustomDsl , HttpSecurity>{
+        @Override
+      public void configure(HttpSecurity httpSecurity) {
+            AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
+            httpSecurity.addFilter(new CustomAuthenticationFilter(authenticationManager))
+                    .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         }
 
         public MyCustomDsl customDsl() {
             return new MyCustomDsl();
-        }
-
-        public class MyCustomDsl extends AbstractHttpConfigurer<MyCustomDsl, HttpSecurity> {
-            @Override
-            public void configure(HttpSecurity httpSecurity) throws Exception {
-                AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManager.class);
-                httpSecurity.addFilter(new CustomAuthenticationFilter(authenticationManager))
-                        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-            }
         }
     }
 }
