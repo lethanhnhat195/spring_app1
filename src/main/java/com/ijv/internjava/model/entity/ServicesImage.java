@@ -28,7 +28,7 @@ public class ServicesImage extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SERVICE_ID", nullable = false)
 
-    private Service service;
+    private Services service;
 
     @Column(name = "NAME_FILE", nullable = false, length = 256)
 

@@ -50,8 +50,9 @@ public class Employees extends BaseEntity {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @Column(name = "WORK_SHIFT_ID", nullable = false)
-    private Integer workShiftId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "WORK_SHIFT_ID", nullable = false)
+    private WorkShift workShiftId;
 
     @ManyToMany
     @JoinTable(name = "user_role",

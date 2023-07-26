@@ -35,11 +35,15 @@ public class Services extends BaseEntity {
     private Set<EmployeeService> employeeServices = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "services")
-    private Set<Feedback> feedbacks = new LinkedHashSet<>();
+    private Set<Feedbacks> feedbacks = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "service")
     private Set<ServicesImage> servicesImages = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "service")
     private Set<BookingDetail> bookingDetails = new LinkedHashSet<>();
+
+    public Services(Long serviceId) {
+        this.id = serviceId;
+    }
 }

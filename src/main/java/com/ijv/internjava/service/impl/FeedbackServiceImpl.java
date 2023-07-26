@@ -3,6 +3,7 @@ package com.ijv.internjava.service.impl;
 import com.ijv.internjava.mapper.FeedBackMapper;
 import com.ijv.internjava.model.dto.FeedbackDto;
 import com.ijv.internjava.model.entity.Feedbacks;
+import com.ijv.internjava.model.entity.Services;
 import com.ijv.internjava.repository.FeedbackRepository;
 import com.ijv.internjava.service.FeedbackService;
 import lombok.AllArgsConstructor;
@@ -24,12 +25,12 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public FeedbackDto add(long id, FeedbackDto feedbackDto) {
+    public FeedbackDto add(long id,FeedbackDto feedbackDto) {
         Feedbacks feedback = new Feedbacks();
         feedback.setId(feedbackDto.getId());
         feedback.setName(feedbackDto.getName());
         feedback.setEmail(feedbackDto.getEmail());
-        feedback.setServices(feedbackDto.getServiceId());
+        feedback.setServices(new Services(feedbackDto.getServiceId()));
         feedback.setTitle(feedbackDto.getTitle());
         feedback.setContent(feedbackDto.getContent());
         feedback.setReplyId(feedbackDto.getReplyId());
@@ -44,11 +45,12 @@ public class FeedbackServiceImpl implements FeedbackService {
         feedback.setId(feedbackDto.getId());
         feedback.setName(feedbackDto.getName());
         feedback.setEmail(feedbackDto.getEmail());
-        feedback.setServices(feedbackDto.getServiceId());
+        feedback.setServices(new Services(feedbackDto.getServiceId()));
         feedback.setTitle(feedbackDto.getTitle());
         feedback.setContent(feedbackDto.getContent());
         feedback.setReplyId(feedbackDto.getReplyId());
         feedback.setRating(feedbackDto.getRating());
+
         Feedbacks feedbackUpdated = feedbackRepository.save(feedback);
         return FeedBackMapper.getInstance().toDto(feedbackUpdated);
     }

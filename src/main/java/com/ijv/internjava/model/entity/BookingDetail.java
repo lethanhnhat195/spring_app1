@@ -26,7 +26,7 @@ public class BookingDetail extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SERVICE_ID", nullable = false)
-    private Service service;
+    private Services service;
 
     @Column(name = "NOTE", length = 500)
     private String note;

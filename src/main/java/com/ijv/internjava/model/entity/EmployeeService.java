@@ -22,11 +22,11 @@ public class EmployeeService extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "EMPLOYEE_ID", nullable = false)
-    private Employee employee;
+    private Employees employee;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "SERVICE_ID", nullable = false)
-    private Service service;
+    private Services service;
 
     @Column(name = "NOTE", length = 500)
     private String note;
